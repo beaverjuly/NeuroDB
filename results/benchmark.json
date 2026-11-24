@@ -1,0 +1,4834 @@
+{
+  "measured_at": "2026-11-22T04:55:13.065873+00:00",
+  "data_kind": "real observations only",
+  "warmup_runs": 2,
+  "repeats": 9,
+  "timing_scope": "client execute plus fetch over local socket",
+  "counter_scope": "session Handler API counters; not physical disk reads",
+  "controlled_tables": "session-local copies; no production indexes are changed",
+  "hints": "none; MySQL chooses among each copy's available indexes",
+  "event_experiments": {
+    "10": {
+      "baseline": {
+        "sql": "SELECT event_id,run_id,trial_id,event_type_id,onset_seconds,duration_seconds FROM bench_events_baseline WHERE run_id=%s AND onset_seconds >= %s AND onset_seconds < %s ORDER BY onset_seconds,event_id",
+        "params": [
+          35,
+          0.0,
+          10.0
+        ],
+        "explain_analyze": "-> Sort: bench_events_baseline.onset_seconds, bench_events_baseline.event_id  (cost=467 rows=462) (actual time=0.522..0.522 rows=7 loops=1)\n    -> Filter: ((bench_events_baseline.onset_seconds >= 0.0e0) and (bench_events_baseline.onset_seconds < 10.0e0))  (cost=467 rows=462) (actual time=0.105..0.517 rows=7 loops=1)\n        -> Index lookup on bench_events_baseline using event_identity (run_id=35)  (cost=467 rows=462) (actual time=0.104..0.49 rows=462 loops=1)\n",
+        "estimated_plan": {
+          "query_block": {
+            "select_id": 1,
+            "cost_info": {
+              "query_cost": "508.20"
+            },
+            "ordering_operation": {
+              "using_filesort": true,
+              "table": {
+                "table_name": "bench_events_baseline",
+                "access_type": "ref",
+                "possible_keys": [
+                  "event_identity",
+                  "events_trial_fk"
+                ],
+                "key": "event_identity",
+                "used_key_parts": [
+                  "run_id"
+                ],
+                "key_length": "4",
+                "ref": [
+                  "const"
+                ],
+                "rows_examined_per_scan": 462,
+                "rows_produced_per_join": 51,
+                "filtered": "11.11",
+                "cost_info": {
+                  "read_cost": "462.00",
+                  "eval_cost": "5.13",
+                  "prefix_cost": "508.20",
+                  "data_read_per_join": "11K"
+                },
+                "used_columns": [
+                  "event_id",
+                  "run_id",
+                  "trial_id",
+                  "event_type_id",
+                  "onset_seconds",
+                  "duration_seconds"
+                ],
+                "attached_condition": "((`neurodb`.`bench_events_baseline`.`onset_seconds` >= 0.0e0) and (`neurodb`.`bench_events_baseline`.`onset_seconds` < 10.0e0))"
+              }
+            }
+          }
+        },
+        "samples": [
+          {
+            "milliseconds": 0.655542,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.652375,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.679958,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.672792,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.664208,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.6625,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.660834,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.664,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.675125,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          }
+        ],
+        "median_ms": 0.664,
+        "median_handler_reads": 463,
+        "returned_rows": 7,
+        "within_run_selectivity": 0.015151515151515152
+      },
+      "composite": {
+        "sql": "SELECT event_id,run_id,trial_id,event_type_id,onset_seconds,duration_seconds FROM bench_events_composite WHERE run_id=%s AND onset_seconds >= %s AND onset_seconds < %s ORDER BY onset_seconds,event_id",
+        "params": [
+          35,
+          0.0,
+          10.0
+        ],
+        "explain_analyze": "-> Index range scan on bench_events_composite using idx_events_run_onset over (run_id = 35 AND 0 <= onset_seconds < 10), with index condition: ((bench_events_composite.run_id = 35) and (bench_events_composite.onset_seconds >= 0.0e0) and (bench_events_composite.onset_seconds < 10.0e0))  (cost=9.41 rows=7) (actual time=0.0167..0.0183 rows=7 loops=1)\n",
+        "estimated_plan": {
+          "query_block": {
+            "select_id": 1,
+            "cost_info": {
+              "query_cost": "9.41"
+            },
+            "ordering_operation": {
+              "using_filesort": false,
+              "table": {
+                "table_name": "bench_events_composite",
+                "access_type": "range",
+                "possible_keys": [
+                  "event_identity",
+                  "events_trial_fk",
+                  "idx_events_run_onset"
+                ],
+                "key": "idx_events_run_onset",
+                "used_key_parts": [
+                  "run_id",
+                  "onset_seconds"
+                ],
+                "key_length": "12",
+                "rows_examined_per_scan": 7,
+                "rows_produced_per_join": 7,
+                "filtered": "100.00",
+                "index_condition": "((`neurodb`.`bench_events_composite`.`run_id` = 35) and (`neurodb`.`bench_events_composite`.`onset_seconds` >= 0.0e0) and (`neurodb`.`bench_events_composite`.`onset_seconds` < 10.0e0))",
+                "cost_info": {
+                  "read_cost": "8.71",
+                  "eval_cost": "0.70",
+                  "prefix_cost": "9.41",
+                  "data_read_per_join": "1K"
+                },
+                "used_columns": [
+                  "event_id",
+                  "run_id",
+                  "trial_id",
+                  "event_type_id",
+                  "onset_seconds",
+                  "duration_seconds"
+                ]
+              }
+            }
+          }
+        },
+        "samples": [
+          {
+            "milliseconds": 0.153208,
+            "handler_reads": 8,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 7,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.154834,
+            "handler_reads": 8,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 7,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.146375,
+            "handler_reads": 8,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 7,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.176083,
+            "handler_reads": 8,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 7,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.172375,
+            "handler_reads": 8,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 7,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.16375,
+            "handler_reads": 8,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 7,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.180583,
+            "handler_reads": 8,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 7,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.163708,
+            "handler_reads": 8,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 7,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.16525,
+            "handler_reads": 8,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 7,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          }
+        ],
+        "median_ms": 0.16375,
+        "median_handler_reads": 8,
+        "returned_rows": 7,
+        "within_run_selectivity": 0.015151515151515152
+      },
+      "covering": {
+        "sql": "SELECT event_id,run_id,trial_id,event_type_id,onset_seconds,duration_seconds FROM bench_events_covering WHERE run_id=%s AND onset_seconds >= %s AND onset_seconds < %s ORDER BY onset_seconds,event_id",
+        "params": [
+          35,
+          0.0,
+          10.0
+        ],
+        "explain_analyze": "-> Filter: ((bench_events_covering.run_id = 35) and (bench_events_covering.onset_seconds >= 0.0e0) and (bench_events_covering.onset_seconds < 10.0e0))  (cost=2.45 rows=7) (actual time=0.00492..0.00625 rows=7 loops=1)\n    -> Covering index range scan on bench_events_covering using idx_cover over (run_id = 35 AND 0 <= onset_seconds < 10)  (cost=2.45 rows=7) (actual time=0.00446..0.00504 rows=7 loops=1)\n",
+        "estimated_plan": {
+          "query_block": {
+            "select_id": 1,
+            "cost_info": {
+              "query_cost": "2.44"
+            },
+            "ordering_operation": {
+              "using_filesort": false,
+              "table": {
+                "table_name": "bench_events_covering",
+                "access_type": "range",
+                "possible_keys": [
+                  "event_identity",
+                  "events_trial_fk",
+                  "idx_cover"
+                ],
+                "key": "idx_cover",
+                "used_key_parts": [
+                  "run_id",
+                  "onset_seconds"
+                ],
+                "key_length": "12",
+                "rows_examined_per_scan": 7,
+                "rows_produced_per_join": 7,
+                "filtered": "100.00",
+                "using_index": true,
+                "cost_info": {
+                  "read_cost": "1.75",
+                  "eval_cost": "0.70",
+                  "prefix_cost": "2.45",
+                  "data_read_per_join": "1K"
+                },
+                "used_columns": [
+                  "event_id",
+                  "run_id",
+                  "trial_id",
+                  "event_type_id",
+                  "onset_seconds",
+                  "duration_seconds"
+                ],
+                "attached_condition": "((`neurodb`.`bench_events_covering`.`run_id` = 35) and (`neurodb`.`bench_events_covering`.`onset_seconds` >= 0.0e0) and (`neurodb`.`bench_events_covering`.`onset_seconds` < 10.0e0))"
+              }
+            }
+          }
+        },
+        "samples": [
+          {
+            "milliseconds": 0.153291,
+            "handler_reads": 8,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 7,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.140417,
+            "handler_reads": 8,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 7,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.179958,
+            "handler_reads": 8,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 7,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.166917,
+            "handler_reads": 8,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 7,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.174125,
+            "handler_reads": 8,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 7,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.1655,
+            "handler_reads": 8,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 7,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.159792,
+            "handler_reads": 8,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 7,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.158292,
+            "handler_reads": 8,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 7,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.169708,
+            "handler_reads": 8,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 7,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          }
+        ],
+        "median_ms": 0.1655,
+        "median_handler_reads": 8,
+        "returned_rows": 7,
+        "within_run_selectivity": 0.015151515151515152
+      },
+      "reversed": {
+        "sql": "SELECT event_id,run_id,trial_id,event_type_id,onset_seconds,duration_seconds FROM bench_events_reversed WHERE run_id=%s AND onset_seconds >= %s AND onset_seconds < %s ORDER BY onset_seconds,event_id",
+        "params": [
+          35,
+          0.0,
+          10.0
+        ],
+        "explain_analyze": "-> Sort: bench_events_reversed.onset_seconds, bench_events_reversed.event_id  (cost=463 rows=462) (actual time=0.488..0.488 rows=7 loops=1)\n    -> Filter: ((bench_events_reversed.onset_seconds >= 0.0e0) and (bench_events_reversed.onset_seconds < 10.0e0))  (cost=463 rows=462) (actual time=0.0947..0.485 rows=7 loops=1)\n        -> Index lookup on bench_events_reversed using event_identity (run_id=35)  (cost=463 rows=462) (actual time=0.0944..0.46 rows=462 loops=1)\n",
+        "estimated_plan": {
+          "query_block": {
+            "select_id": 1,
+            "cost_info": {
+              "query_cost": "508.20"
+            },
+            "ordering_operation": {
+              "using_filesort": true,
+              "table": {
+                "table_name": "bench_events_reversed",
+                "access_type": "ref",
+                "possible_keys": [
+                  "event_identity",
+                  "events_trial_fk",
+                  "idx_reversed"
+                ],
+                "key": "event_identity",
+                "used_key_parts": [
+                  "run_id"
+                ],
+                "key_length": "4",
+                "ref": [
+                  "const"
+                ],
+                "rows_examined_per_scan": 462,
+                "rows_produced_per_join": 6,
+                "filtered": "1.50",
+                "cost_info": {
+                  "read_cost": "462.00",
+                  "eval_cost": "0.69",
+                  "prefix_cost": "508.20",
+                  "data_read_per_join": "1K"
+                },
+                "used_columns": [
+                  "event_id",
+                  "run_id",
+                  "trial_id",
+                  "event_type_id",
+                  "onset_seconds",
+                  "duration_seconds"
+                ],
+                "attached_condition": "((`neurodb`.`bench_events_reversed`.`onset_seconds` >= 0.0e0) and (`neurodb`.`bench_events_reversed`.`onset_seconds` < 10.0e0))"
+              }
+            }
+          }
+        },
+        "samples": [
+          {
+            "milliseconds": 0.641958,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.619334,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.651042,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.644958,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.633542,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.632,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.639125,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.634042,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          },
+          {
+            "milliseconds": 0.63275,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 7,
+            "result_sha256": "7d93f75eb578e3b5b759cbd3b77ba2ecc84305f7a4c833085bd908786b4b6a87"
+          }
+        ],
+        "median_ms": 0.634042,
+        "median_handler_reads": 463,
+        "returned_rows": 7,
+        "within_run_selectivity": 0.015151515151515152
+      }
+    },
+    "60": {
+      "baseline": {
+        "sql": "SELECT event_id,run_id,trial_id,event_type_id,onset_seconds,duration_seconds FROM bench_events_baseline WHERE run_id=%s AND onset_seconds >= %s AND onset_seconds < %s ORDER BY onset_seconds,event_id",
+        "params": [
+          35,
+          0.0,
+          60.0
+        ],
+        "explain_analyze": "-> Sort: bench_events_baseline.onset_seconds, bench_events_baseline.event_id  (cost=467 rows=462) (actual time=0.521..0.523 rows=40 loops=1)\n    -> Filter: ((bench_events_baseline.onset_seconds >= 0.0e0) and (bench_events_baseline.onset_seconds < 60.0e0))  (cost=467 rows=462) (actual time=0.1..0.515 rows=40 loops=1)\n        -> Index lookup on bench_events_baseline using event_identity (run_id=35)  (cost=467 rows=462) (actual time=0.0997..0.488 rows=462 loops=1)\n",
+        "estimated_plan": {
+          "query_block": {
+            "select_id": 1,
+            "cost_info": {
+              "query_cost": "508.20"
+            },
+            "ordering_operation": {
+              "using_filesort": true,
+              "table": {
+                "table_name": "bench_events_baseline",
+                "access_type": "ref",
+                "possible_keys": [
+                  "event_identity",
+                  "events_trial_fk"
+                ],
+                "key": "event_identity",
+                "used_key_parts": [
+                  "run_id"
+                ],
+                "key_length": "4",
+                "ref": [
+                  "const"
+                ],
+                "rows_examined_per_scan": 462,
+                "rows_produced_per_join": 51,
+                "filtered": "11.11",
+                "cost_info": {
+                  "read_cost": "462.00",
+                  "eval_cost": "5.13",
+                  "prefix_cost": "508.20",
+                  "data_read_per_join": "11K"
+                },
+                "used_columns": [
+                  "event_id",
+                  "run_id",
+                  "trial_id",
+                  "event_type_id",
+                  "onset_seconds",
+                  "duration_seconds"
+                ],
+                "attached_condition": "((`neurodb`.`bench_events_baseline`.`onset_seconds` >= 0.0e0) and (`neurodb`.`bench_events_baseline`.`onset_seconds` < 60.0e0))"
+              }
+            }
+          }
+        },
+        "samples": [
+          {
+            "milliseconds": 0.815,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.803958,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.812958,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.808959,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.826708,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.825292,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.80875,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.804834,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.816417,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          }
+        ],
+        "median_ms": 0.812958,
+        "median_handler_reads": 463,
+        "returned_rows": 40,
+        "within_run_selectivity": 0.08658008658008658
+      },
+      "composite": {
+        "sql": "SELECT event_id,run_id,trial_id,event_type_id,onset_seconds,duration_seconds FROM bench_events_composite WHERE run_id=%s AND onset_seconds >= %s AND onset_seconds < %s ORDER BY onset_seconds,event_id",
+        "params": [
+          35,
+          0.0,
+          60.0
+        ],
+        "explain_analyze": "-> Index range scan on bench_events_composite using idx_events_run_onset over (run_id = 35 AND 0 <= onset_seconds < 60), with index condition: ((bench_events_composite.run_id = 35) and (bench_events_composite.onset_seconds >= 0.0e0) and (bench_events_composite.onset_seconds < 60.0e0))  (cost=49 rows=40) (actual time=0.0471..0.0507 rows=40 loops=1)\n",
+        "estimated_plan": {
+          "query_block": {
+            "select_id": 1,
+            "cost_info": {
+              "query_cost": "49.01"
+            },
+            "ordering_operation": {
+              "using_filesort": false,
+              "table": {
+                "table_name": "bench_events_composite",
+                "access_type": "range",
+                "possible_keys": [
+                  "event_identity",
+                  "events_trial_fk",
+                  "idx_events_run_onset"
+                ],
+                "key": "idx_events_run_onset",
+                "used_key_parts": [
+                  "run_id",
+                  "onset_seconds"
+                ],
+                "key_length": "12",
+                "rows_examined_per_scan": 40,
+                "rows_produced_per_join": 40,
+                "filtered": "100.00",
+                "index_condition": "((`neurodb`.`bench_events_composite`.`run_id` = 35) and (`neurodb`.`bench_events_composite`.`onset_seconds` >= 0.0e0) and (`neurodb`.`bench_events_composite`.`onset_seconds` < 60.0e0))",
+                "cost_info": {
+                  "read_cost": "45.01",
+                  "eval_cost": "4.00",
+                  "prefix_cost": "49.01",
+                  "data_read_per_join": "9K"
+                },
+                "used_columns": [
+                  "event_id",
+                  "run_id",
+                  "trial_id",
+                  "event_type_id",
+                  "onset_seconds",
+                  "duration_seconds"
+                ]
+              }
+            }
+          }
+        },
+        "samples": [
+          {
+            "milliseconds": 0.346459,
+            "handler_reads": 41,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 40,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.347541,
+            "handler_reads": 41,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 40,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.360667,
+            "handler_reads": 41,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 40,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.35975,
+            "handler_reads": 41,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 40,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.354916,
+            "handler_reads": 41,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 40,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.351583,
+            "handler_reads": 41,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 40,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.357083,
+            "handler_reads": 41,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 40,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.366875,
+            "handler_reads": 41,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 40,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.352333,
+            "handler_reads": 41,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 40,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          }
+        ],
+        "median_ms": 0.354916,
+        "median_handler_reads": 41,
+        "returned_rows": 40,
+        "within_run_selectivity": 0.08658008658008658
+      },
+      "covering": {
+        "sql": "SELECT event_id,run_id,trial_id,event_type_id,onset_seconds,duration_seconds FROM bench_events_covering WHERE run_id=%s AND onset_seconds >= %s AND onset_seconds < %s ORDER BY onset_seconds,event_id",
+        "params": [
+          35,
+          0.0,
+          60.0
+        ],
+        "explain_analyze": "-> Filter: ((bench_events_covering.run_id = 35) and (bench_events_covering.onset_seconds >= 0.0e0) and (bench_events_covering.onset_seconds < 60.0e0))  (cost=9.24 rows=40) (actual time=0.0113..0.0181 rows=40 loops=1)\n    -> Covering index range scan on bench_events_covering using idx_cover over (run_id = 35 AND 0 <= onset_seconds < 60)  (cost=9.24 rows=40) (actual time=0.0109..0.0136 rows=40 loops=1)\n",
+        "estimated_plan": {
+          "query_block": {
+            "select_id": 1,
+            "cost_info": {
+              "query_cost": "9.24"
+            },
+            "ordering_operation": {
+              "using_filesort": false,
+              "table": {
+                "table_name": "bench_events_covering",
+                "access_type": "range",
+                "possible_keys": [
+                  "event_identity",
+                  "events_trial_fk",
+                  "idx_cover"
+                ],
+                "key": "idx_cover",
+                "used_key_parts": [
+                  "run_id",
+                  "onset_seconds"
+                ],
+                "key_length": "12",
+                "rows_examined_per_scan": 40,
+                "rows_produced_per_join": 40,
+                "filtered": "100.00",
+                "using_index": true,
+                "cost_info": {
+                  "read_cost": "5.24",
+                  "eval_cost": "4.00",
+                  "prefix_cost": "9.24",
+                  "data_read_per_join": "9K"
+                },
+                "used_columns": [
+                  "event_id",
+                  "run_id",
+                  "trial_id",
+                  "event_type_id",
+                  "onset_seconds",
+                  "duration_seconds"
+                ],
+                "attached_condition": "((`neurodb`.`bench_events_covering`.`run_id` = 35) and (`neurodb`.`bench_events_covering`.`onset_seconds` >= 0.0e0) and (`neurodb`.`bench_events_covering`.`onset_seconds` < 60.0e0))"
+              }
+            }
+          }
+        },
+        "samples": [
+          {
+            "milliseconds": 0.326333,
+            "handler_reads": 41,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 40,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.316917,
+            "handler_reads": 41,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 40,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.312917,
+            "handler_reads": 41,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 40,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.327084,
+            "handler_reads": 41,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 40,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.322958,
+            "handler_reads": 41,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 40,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.328125,
+            "handler_reads": 41,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 40,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.324208,
+            "handler_reads": 41,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 40,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.326583,
+            "handler_reads": 41,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 40,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.321,
+            "handler_reads": 41,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 40,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          }
+        ],
+        "median_ms": 0.324208,
+        "median_handler_reads": 41,
+        "returned_rows": 40,
+        "within_run_selectivity": 0.08658008658008658
+      },
+      "reversed": {
+        "sql": "SELECT event_id,run_id,trial_id,event_type_id,onset_seconds,duration_seconds FROM bench_events_reversed WHERE run_id=%s AND onset_seconds >= %s AND onset_seconds < %s ORDER BY onset_seconds,event_id",
+        "params": [
+          35,
+          0.0,
+          60.0
+        ],
+        "explain_analyze": "-> Sort: bench_events_reversed.onset_seconds, bench_events_reversed.event_id  (cost=470 rows=462) (actual time=0.496..0.498 rows=40 loops=1)\n    -> Filter: ((bench_events_reversed.onset_seconds >= 0.0e0) and (bench_events_reversed.onset_seconds < 60.0e0))  (cost=470 rows=462) (actual time=0.096..0.49 rows=40 loops=1)\n        -> Index lookup on bench_events_reversed using event_identity (run_id=35)  (cost=470 rows=462) (actual time=0.0958..0.463 rows=462 loops=1)\n",
+        "estimated_plan": {
+          "query_block": {
+            "select_id": 1,
+            "cost_info": {
+              "query_cost": "508.20"
+            },
+            "ordering_operation": {
+              "using_filesort": true,
+              "table": {
+                "table_name": "bench_events_reversed",
+                "access_type": "ref",
+                "possible_keys": [
+                  "event_identity",
+                  "events_trial_fk",
+                  "idx_reversed"
+                ],
+                "key": "event_identity",
+                "used_key_parts": [
+                  "run_id"
+                ],
+                "key_length": "4",
+                "ref": [
+                  "const"
+                ],
+                "rows_examined_per_scan": 462,
+                "rows_produced_per_join": 80,
+                "filtered": "17.36",
+                "cost_info": {
+                  "read_cost": "462.00",
+                  "eval_cost": "8.02",
+                  "prefix_cost": "508.20",
+                  "data_read_per_join": "18K"
+                },
+                "used_columns": [
+                  "event_id",
+                  "run_id",
+                  "trial_id",
+                  "event_type_id",
+                  "onset_seconds",
+                  "duration_seconds"
+                ],
+                "attached_condition": "((`neurodb`.`bench_events_reversed`.`onset_seconds` >= 0.0e0) and (`neurodb`.`bench_events_reversed`.`onset_seconds` < 60.0e0))"
+              }
+            }
+          }
+        },
+        "samples": [
+          {
+            "milliseconds": 0.781042,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.786292,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.790792,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.805,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.787542,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.799708,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.788917,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.786708,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          },
+          {
+            "milliseconds": 0.798875,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 40,
+            "result_sha256": "1d5669c190a18ea6ca22050cbc56a431085f326ae879178cff9cb3e5cc1363f1"
+          }
+        ],
+        "median_ms": 0.788917,
+        "median_handler_reads": 463,
+        "returned_rows": 40,
+        "within_run_selectivity": 0.08658008658008658
+      }
+    },
+    "300": {
+      "baseline": {
+        "sql": "SELECT event_id,run_id,trial_id,event_type_id,onset_seconds,duration_seconds FROM bench_events_baseline WHERE run_id=%s AND onset_seconds >= %s AND onset_seconds < %s ORDER BY onset_seconds,event_id",
+        "params": [
+          35,
+          0.0,
+          300.0
+        ],
+        "explain_analyze": "-> Sort: bench_events_baseline.onset_seconds, bench_events_baseline.event_id  (cost=467 rows=462) (actual time=0.549..0.561 rows=195 loops=1)\n    -> Filter: ((bench_events_baseline.onset_seconds >= 0.0e0) and (bench_events_baseline.onset_seconds < 300.0e0))  (cost=467 rows=462) (actual time=0.102..0.529 rows=195 loops=1)\n        -> Index lookup on bench_events_baseline using event_identity (run_id=35)  (cost=467 rows=462) (actual time=0.102..0.498 rows=462 loops=1)\n",
+        "estimated_plan": {
+          "query_block": {
+            "select_id": 1,
+            "cost_info": {
+              "query_cost": "508.20"
+            },
+            "ordering_operation": {
+              "using_filesort": true,
+              "table": {
+                "table_name": "bench_events_baseline",
+                "access_type": "ref",
+                "possible_keys": [
+                  "event_identity",
+                  "events_trial_fk"
+                ],
+                "key": "event_identity",
+                "used_key_parts": [
+                  "run_id"
+                ],
+                "key_length": "4",
+                "ref": [
+                  "const"
+                ],
+                "rows_examined_per_scan": 462,
+                "rows_produced_per_join": 51,
+                "filtered": "11.11",
+                "cost_info": {
+                  "read_cost": "462.00",
+                  "eval_cost": "5.13",
+                  "prefix_cost": "508.20",
+                  "data_read_per_join": "11K"
+                },
+                "used_columns": [
+                  "event_id",
+                  "run_id",
+                  "trial_id",
+                  "event_type_id",
+                  "onset_seconds",
+                  "duration_seconds"
+                ],
+                "attached_condition": "((`neurodb`.`bench_events_baseline`.`onset_seconds` >= 0.0e0) and (`neurodb`.`bench_events_baseline`.`onset_seconds` < 300.0e0))"
+              }
+            }
+          }
+        },
+        "samples": [
+          {
+            "milliseconds": 1.531458,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.519583,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.544458,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.534416,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.522125,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.5065,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.535875,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.52075,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.54025,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          }
+        ],
+        "median_ms": 1.531458,
+        "median_handler_reads": 463,
+        "returned_rows": 195,
+        "within_run_selectivity": 0.42207792207792205
+      },
+      "composite": {
+        "sql": "SELECT event_id,run_id,trial_id,event_type_id,onset_seconds,duration_seconds FROM bench_events_composite WHERE run_id=%s AND onset_seconds >= %s AND onset_seconds < %s ORDER BY onset_seconds,event_id",
+        "params": [
+          35,
+          0.0,
+          300.0
+        ],
+        "explain_analyze": "-> Index range scan on bench_events_composite using idx_events_run_onset over (run_id = 35 AND 0 <= onset_seconds < 300), with index condition: ((bench_events_composite.run_id = 35) and (bench_events_composite.onset_seconds >= 0.0e0) and (bench_events_composite.onset_seconds < 300.0e0))  (cost=235 rows=195) (actual time=0.107..0.231 rows=195 loops=1)\n",
+        "estimated_plan": {
+          "query_block": {
+            "select_id": 1,
+            "cost_info": {
+              "query_cost": "235.01"
+            },
+            "ordering_operation": {
+              "using_filesort": false,
+              "table": {
+                "table_name": "bench_events_composite",
+                "access_type": "range",
+                "possible_keys": [
+                  "event_identity",
+                  "events_trial_fk",
+                  "idx_events_run_onset"
+                ],
+                "key": "idx_events_run_onset",
+                "used_key_parts": [
+                  "run_id",
+                  "onset_seconds"
+                ],
+                "key_length": "12",
+                "rows_examined_per_scan": 195,
+                "rows_produced_per_join": 195,
+                "filtered": "100.00",
+                "index_condition": "((`neurodb`.`bench_events_composite`.`run_id` = 35) and (`neurodb`.`bench_events_composite`.`onset_seconds` >= 0.0e0) and (`neurodb`.`bench_events_composite`.`onset_seconds` < 300.0e0))",
+                "cost_info": {
+                  "read_cost": "215.51",
+                  "eval_cost": "19.50",
+                  "prefix_cost": "235.01",
+                  "data_read_per_join": "44K"
+                },
+                "used_columns": [
+                  "event_id",
+                  "run_id",
+                  "trial_id",
+                  "event_type_id",
+                  "onset_seconds",
+                  "duration_seconds"
+                ]
+              }
+            }
+          }
+        },
+        "samples": [
+          {
+            "milliseconds": 1.243833,
+            "handler_reads": 196,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 195,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.237208,
+            "handler_reads": 196,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 195,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.233125,
+            "handler_reads": 196,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 195,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.221541,
+            "handler_reads": 196,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 195,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.225875,
+            "handler_reads": 196,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 195,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.220292,
+            "handler_reads": 196,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 195,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.233625,
+            "handler_reads": 196,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 195,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.216084,
+            "handler_reads": 196,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 195,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.221917,
+            "handler_reads": 196,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 195,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          }
+        ],
+        "median_ms": 1.225875,
+        "median_handler_reads": 196,
+        "returned_rows": 195,
+        "within_run_selectivity": 0.42207792207792205
+      },
+      "covering": {
+        "sql": "SELECT event_id,run_id,trial_id,event_type_id,onset_seconds,duration_seconds FROM bench_events_covering WHERE run_id=%s AND onset_seconds >= %s AND onset_seconds < %s ORDER BY onset_seconds,event_id",
+        "params": [
+          35,
+          0.0,
+          300.0
+        ],
+        "explain_analyze": "-> Filter: ((bench_events_covering.run_id = 35) and (bench_events_covering.onset_seconds >= 0.0e0) and (bench_events_covering.onset_seconds < 300.0e0))  (cost=41.2 rows=195) (actual time=0.0217..0.073 rows=195 loops=1)\n    -> Covering index range scan on bench_events_covering using idx_cover over (run_id = 35 AND 0 <= onset_seconds < 300)  (cost=41.2 rows=195) (actual time=0.0213..0.0527 rows=195 loops=1)\n",
+        "estimated_plan": {
+          "query_block": {
+            "select_id": 1,
+            "cost_info": {
+              "query_cost": "41.16"
+            },
+            "ordering_operation": {
+              "using_filesort": false,
+              "table": {
+                "table_name": "bench_events_covering",
+                "access_type": "range",
+                "possible_keys": [
+                  "event_identity",
+                  "events_trial_fk",
+                  "idx_cover"
+                ],
+                "key": "idx_cover",
+                "used_key_parts": [
+                  "run_id",
+                  "onset_seconds"
+                ],
+                "key_length": "12",
+                "rows_examined_per_scan": 195,
+                "rows_produced_per_join": 195,
+                "filtered": "100.00",
+                "using_index": true,
+                "cost_info": {
+                  "read_cost": "21.66",
+                  "eval_cost": "19.50",
+                  "prefix_cost": "41.16",
+                  "data_read_per_join": "44K"
+                },
+                "used_columns": [
+                  "event_id",
+                  "run_id",
+                  "trial_id",
+                  "event_type_id",
+                  "onset_seconds",
+                  "duration_seconds"
+                ],
+                "attached_condition": "((`neurodb`.`bench_events_covering`.`run_id` = 35) and (`neurodb`.`bench_events_covering`.`onset_seconds` >= 0.0e0) and (`neurodb`.`bench_events_covering`.`onset_seconds` < 300.0e0))"
+              }
+            }
+          }
+        },
+        "samples": [
+          {
+            "milliseconds": 1.050542,
+            "handler_reads": 196,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 195,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.051,
+            "handler_reads": 196,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 195,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.053458,
+            "handler_reads": 196,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 195,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.054792,
+            "handler_reads": 196,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 195,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.049667,
+            "handler_reads": 196,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 195,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.053667,
+            "handler_reads": 196,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 195,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.053375,
+            "handler_reads": 196,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 195,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.053708,
+            "handler_reads": 196,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 195,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.040833,
+            "handler_reads": 196,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 195,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          }
+        ],
+        "median_ms": 1.053375,
+        "median_handler_reads": 196,
+        "returned_rows": 195,
+        "within_run_selectivity": 0.42207792207792205
+      },
+      "reversed": {
+        "sql": "SELECT event_id,run_id,trial_id,event_type_id,onset_seconds,duration_seconds FROM bench_events_reversed WHERE run_id=%s AND onset_seconds >= %s AND onset_seconds < %s ORDER BY onset_seconds,event_id",
+        "params": [
+          35,
+          0.0,
+          300.0
+        ],
+        "explain_analyze": "-> Sort: bench_events_reversed.onset_seconds, bench_events_reversed.event_id  (cost=485 rows=462) (actual time=0.515..0.527 rows=195 loops=1)\n    -> Filter: ((bench_events_reversed.onset_seconds >= 0.0e0) and (bench_events_reversed.onset_seconds < 300.0e0))  (cost=485 rows=462) (actual time=0.0961..0.492 rows=195 loops=1)\n        -> Index lookup on bench_events_reversed using event_identity (run_id=35)  (cost=485 rows=462) (actual time=0.0958..0.463 rows=462 loops=1)\n",
+        "estimated_plan": {
+          "query_block": {
+            "select_id": 1,
+            "cost_info": {
+              "query_cost": "508.20"
+            },
+            "ordering_operation": {
+              "using_filesort": true,
+              "table": {
+                "table_name": "bench_events_reversed",
+                "access_type": "ref",
+                "possible_keys": [
+                  "event_identity",
+                  "events_trial_fk",
+                  "idx_reversed"
+                ],
+                "key": "event_identity",
+                "used_key_parts": [
+                  "run_id"
+                ],
+                "key_length": "4",
+                "ref": [
+                  "const"
+                ],
+                "rows_examined_per_scan": 462,
+                "rows_produced_per_join": 230,
+                "filtered": "50.00",
+                "cost_info": {
+                  "read_cost": "462.00",
+                  "eval_cost": "23.10",
+                  "prefix_cost": "508.20",
+                  "data_read_per_join": "52K"
+                },
+                "used_columns": [
+                  "event_id",
+                  "run_id",
+                  "trial_id",
+                  "event_type_id",
+                  "onset_seconds",
+                  "duration_seconds"
+                ],
+                "attached_condition": "((`neurodb`.`bench_events_reversed`.`onset_seconds` >= 0.0e0) and (`neurodb`.`bench_events_reversed`.`onset_seconds` < 300.0e0))"
+              }
+            }
+          }
+        },
+        "samples": [
+          {
+            "milliseconds": 1.493084,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.513792,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.492791,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.503292,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.505458,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.504917,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.500917,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.498083,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          },
+          {
+            "milliseconds": 1.494833,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 195,
+            "result_sha256": "0dd2fec8a1141fe5108e5611dbb5e14c9ad26f9381e6b4cddef10bfec9b16c71"
+          }
+        ],
+        "median_ms": 1.500917,
+        "median_handler_reads": 463,
+        "returned_rows": 195,
+        "within_run_selectivity": 0.42207792207792205
+      }
+    },
+    "720": {
+      "baseline": {
+        "sql": "SELECT event_id,run_id,trial_id,event_type_id,onset_seconds,duration_seconds FROM bench_events_baseline WHERE run_id=%s AND onset_seconds >= %s AND onset_seconds < %s ORDER BY onset_seconds,event_id",
+        "params": [
+          35,
+          0.0,
+          720.0
+        ],
+        "explain_analyze": "-> Sort: bench_events_baseline.onset_seconds, bench_events_baseline.event_id  (cost=467 rows=462) (actual time=0.566..0.594 rows=462 loops=1)\n    -> Filter: ((bench_events_baseline.onset_seconds >= 0.0e0) and (bench_events_baseline.onset_seconds < 720.0e0))  (cost=467 rows=462) (actual time=0.101..0.522 rows=462 loops=1)\n        -> Index lookup on bench_events_baseline using event_identity (run_id=35)  (cost=467 rows=462) (actual time=0.1..0.485 rows=462 loops=1)\n",
+        "estimated_plan": {
+          "query_block": {
+            "select_id": 1,
+            "cost_info": {
+              "query_cost": "508.20"
+            },
+            "ordering_operation": {
+              "using_filesort": true,
+              "table": {
+                "table_name": "bench_events_baseline",
+                "access_type": "ref",
+                "possible_keys": [
+                  "event_identity",
+                  "events_trial_fk"
+                ],
+                "key": "event_identity",
+                "used_key_parts": [
+                  "run_id"
+                ],
+                "key_length": "4",
+                "ref": [
+                  "const"
+                ],
+                "rows_examined_per_scan": 462,
+                "rows_produced_per_join": 51,
+                "filtered": "11.11",
+                "cost_info": {
+                  "read_cost": "462.00",
+                  "eval_cost": "5.13",
+                  "prefix_cost": "508.20",
+                  "data_read_per_join": "11K"
+                },
+                "used_columns": [
+                  "event_id",
+                  "run_id",
+                  "trial_id",
+                  "event_type_id",
+                  "onset_seconds",
+                  "duration_seconds"
+                ],
+                "attached_condition": "((`neurodb`.`bench_events_baseline`.`onset_seconds` >= 0.0e0) and (`neurodb`.`bench_events_baseline`.`onset_seconds` < 720.0e0))"
+              }
+            }
+          }
+        },
+        "samples": [
+          {
+            "milliseconds": 2.71,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.727458,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.70125,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.711833,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.726917,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.71625,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.71225,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.6835,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.708209,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          }
+        ],
+        "median_ms": 2.711833,
+        "median_handler_reads": 463,
+        "returned_rows": 462,
+        "within_run_selectivity": 1.0
+      },
+      "composite": {
+        "sql": "SELECT event_id,run_id,trial_id,event_type_id,onset_seconds,duration_seconds FROM bench_events_composite WHERE run_id=%s AND onset_seconds >= %s AND onset_seconds < %s ORDER BY onset_seconds,event_id",
+        "params": [
+          35,
+          0.0,
+          720.0
+        ],
+        "explain_analyze": "-> Index range scan on bench_events_composite using idx_events_run_onset over (run_id = 35 AND 0 <= onset_seconds < 720), with index condition: ((bench_events_composite.run_id = 35) and (bench_events_composite.onset_seconds >= 0.0e0) and (bench_events_composite.onset_seconds < 720.0e0))  (cost=4575 rows=462) (actual time=0.109..0.541 rows=462 loops=1)\n",
+        "estimated_plan": {
+          "query_block": {
+            "select_id": 1,
+            "cost_info": {
+              "query_cost": "508.20"
+            },
+            "ordering_operation": {
+              "using_filesort": false,
+              "table": {
+                "table_name": "bench_events_composite",
+                "access_type": "range",
+                "possible_keys": [
+                  "event_identity",
+                  "events_trial_fk",
+                  "idx_events_run_onset"
+                ],
+                "key": "idx_events_run_onset",
+                "used_key_parts": [
+                  "run_id",
+                  "onset_seconds"
+                ],
+                "key_length": "12",
+                "rows_examined_per_scan": 462,
+                "rows_produced_per_join": 51,
+                "filtered": "100.00",
+                "index_condition": "((`neurodb`.`bench_events_composite`.`run_id` = 35) and (`neurodb`.`bench_events_composite`.`onset_seconds` >= 0.0e0) and (`neurodb`.`bench_events_composite`.`onset_seconds` < 720.0e0))",
+                "cost_info": {
+                  "read_cost": "462.00",
+                  "eval_cost": "5.13",
+                  "prefix_cost": "508.20",
+                  "data_read_per_join": "11K"
+                },
+                "used_columns": [
+                  "event_id",
+                  "run_id",
+                  "trial_id",
+                  "event_type_id",
+                  "onset_seconds",
+                  "duration_seconds"
+                ]
+              }
+            }
+          }
+        },
+        "samples": [
+          {
+            "milliseconds": 2.688958,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.676625,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.673583,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.685,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.678458,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.691916,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.68025,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.692791,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.696208,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          }
+        ],
+        "median_ms": 2.685,
+        "median_handler_reads": 463,
+        "returned_rows": 462,
+        "within_run_selectivity": 1.0
+      },
+      "covering": {
+        "sql": "SELECT event_id,run_id,trial_id,event_type_id,onset_seconds,duration_seconds FROM bench_events_covering WHERE run_id=%s AND onset_seconds >= %s AND onset_seconds < %s ORDER BY onset_seconds,event_id",
+        "params": [
+          35,
+          0.0,
+          720.0
+        ],
+        "explain_analyze": "-> Filter: ((bench_events_covering.run_id = 35) and (bench_events_covering.onset_seconds >= 0.0e0) and (bench_events_covering.onset_seconds < 720.0e0))  (cost=96.2 rows=462) (actual time=0.0204..0.159 rows=462 loops=1)\n    -> Covering index range scan on bench_events_covering using idx_cover over (run_id = 35 AND 0 <= onset_seconds < 720)  (cost=96.2 rows=462) (actual time=0.02..0.113 rows=462 loops=1)\n",
+        "estimated_plan": {
+          "query_block": {
+            "select_id": 1,
+            "cost_info": {
+              "query_cost": "96.15"
+            },
+            "ordering_operation": {
+              "using_filesort": false,
+              "table": {
+                "table_name": "bench_events_covering",
+                "access_type": "range",
+                "possible_keys": [
+                  "event_identity",
+                  "events_trial_fk",
+                  "idx_cover"
+                ],
+                "key": "idx_cover",
+                "used_key_parts": [
+                  "run_id",
+                  "onset_seconds"
+                ],
+                "key_length": "12",
+                "rows_examined_per_scan": 462,
+                "rows_produced_per_join": 462,
+                "filtered": "100.00",
+                "using_index": true,
+                "cost_info": {
+                  "read_cost": "49.95",
+                  "eval_cost": "46.20",
+                  "prefix_cost": "96.15",
+                  "data_read_per_join": "104K"
+                },
+                "used_columns": [
+                  "event_id",
+                  "run_id",
+                  "trial_id",
+                  "event_type_id",
+                  "onset_seconds",
+                  "duration_seconds"
+                ],
+                "attached_condition": "((`neurodb`.`bench_events_covering`.`run_id` = 35) and (`neurodb`.`bench_events_covering`.`onset_seconds` >= 0.0e0) and (`neurodb`.`bench_events_covering`.`onset_seconds` < 720.0e0))"
+              }
+            }
+          }
+        },
+        "samples": [
+          {
+            "milliseconds": 2.2785,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.262417,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.278792,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.268708,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.281375,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.264833,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.265167,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.277083,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.273208,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          }
+        ],
+        "median_ms": 2.273208,
+        "median_handler_reads": 463,
+        "returned_rows": 462,
+        "within_run_selectivity": 1.0
+      },
+      "reversed": {
+        "sql": "SELECT event_id,run_id,trial_id,event_type_id,onset_seconds,duration_seconds FROM bench_events_reversed WHERE run_id=%s AND onset_seconds >= %s AND onset_seconds < %s ORDER BY onset_seconds,event_id",
+        "params": [
+          35,
+          0.0,
+          720.0
+        ],
+        "explain_analyze": "-> Sort: bench_events_reversed.onset_seconds, bench_events_reversed.event_id  (cost=485 rows=462) (actual time=0.549..0.577 rows=462 loops=1)\n    -> Filter: ((bench_events_reversed.onset_seconds >= 0.0e0) and (bench_events_reversed.onset_seconds < 720.0e0))  (cost=485 rows=462) (actual time=0.0963..0.504 rows=462 loops=1)\n        -> Index lookup on bench_events_reversed using event_identity (run_id=35)  (cost=485 rows=462) (actual time=0.0962..0.469 rows=462 loops=1)\n",
+        "estimated_plan": {
+          "query_block": {
+            "select_id": 1,
+            "cost_info": {
+              "query_cost": "508.20"
+            },
+            "ordering_operation": {
+              "using_filesort": true,
+              "table": {
+                "table_name": "bench_events_reversed",
+                "access_type": "ref",
+                "possible_keys": [
+                  "event_identity",
+                  "events_trial_fk",
+                  "idx_reversed"
+                ],
+                "key": "event_identity",
+                "used_key_parts": [
+                  "run_id"
+                ],
+                "key_length": "4",
+                "ref": [
+                  "const"
+                ],
+                "rows_examined_per_scan": 462,
+                "rows_produced_per_join": 230,
+                "filtered": "50.00",
+                "cost_info": {
+                  "read_cost": "462.00",
+                  "eval_cost": "23.10",
+                  "prefix_cost": "508.20",
+                  "data_read_per_join": "52K"
+                },
+                "used_columns": [
+                  "event_id",
+                  "run_id",
+                  "trial_id",
+                  "event_type_id",
+                  "onset_seconds",
+                  "duration_seconds"
+                ],
+                "attached_condition": "((`neurodb`.`bench_events_reversed`.`onset_seconds` >= 0.0e0) and (`neurodb`.`bench_events_reversed`.`onset_seconds` < 720.0e0))"
+              }
+            }
+          }
+        },
+        "samples": [
+          {
+            "milliseconds": 2.690792,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.698375,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.68575,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.692375,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.692875,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.67125,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.675917,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.68325,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          },
+          {
+            "milliseconds": 2.680791,
+            "handler_reads": 463,
+            "handler_counters": {
+              "Handler_read_first": 0,
+              "Handler_read_key": 1,
+              "Handler_read_last": 0,
+              "Handler_read_next": 462,
+              "Handler_read_prev": 0,
+              "Handler_read_rnd": 0,
+              "Handler_read_rnd_next": 0
+            },
+            "returned_rows": 462,
+            "result_sha256": "3556c32bc504d20d08ab696fc8d244566cdd6c6c99f3385785678bc42639ee41"
+          }
+        ],
+        "median_ms": 2.68575,
+        "median_handler_reads": 463,
+        "returned_rows": 462,
+        "within_run_selectivity": 1.0
+      }
+    }
+  },
+  "indexes": {
+    "production_events": [
+      {
+        "Table": "events",
+        "Non_unique": 0,
+        "Key_name": "PRIMARY",
+        "Seq_in_index": 1,
+        "Column_name": "event_id",
+        "Collation": "A",
+        "Cardinality": 921,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "events",
+        "Non_unique": 0,
+        "Key_name": "event_identity",
+        "Seq_in_index": 1,
+        "Column_name": "run_id",
+        "Collation": "A",
+        "Cardinality": 2,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "events",
+        "Non_unique": 0,
+        "Key_name": "event_identity",
+        "Seq_in_index": 2,
+        "Column_name": "trial_scope",
+        "Collation": "A",
+        "Cardinality": 154,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "YES",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "events",
+        "Non_unique": 0,
+        "Key_name": "event_identity",
+        "Seq_in_index": 3,
+        "Column_name": "event_type_id",
+        "Collation": "A",
+        "Cardinality": 921,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "events",
+        "Non_unique": 0,
+        "Key_name": "event_identity",
+        "Seq_in_index": 4,
+        "Column_name": "event_sequence",
+        "Collation": "A",
+        "Cardinality": 921,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "events",
+        "Non_unique": 1,
+        "Key_name": "events_trial_fk",
+        "Seq_in_index": 1,
+        "Column_name": "run_id",
+        "Collation": "A",
+        "Cardinality": 2,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "events",
+        "Non_unique": 1,
+        "Key_name": "events_trial_fk",
+        "Seq_in_index": 2,
+        "Column_name": "trial_id",
+        "Collation": "A",
+        "Cardinality": 154,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "YES",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "events",
+        "Non_unique": 1,
+        "Key_name": "idx_events_run_onset",
+        "Seq_in_index": 1,
+        "Column_name": "run_id",
+        "Collation": "A",
+        "Cardinality": 2,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "events",
+        "Non_unique": 1,
+        "Key_name": "idx_events_run_onset",
+        "Seq_in_index": 2,
+        "Column_name": "onset_seconds",
+        "Collation": "A",
+        "Cardinality": 921,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "events",
+        "Non_unique": 1,
+        "Key_name": "event_type_id",
+        "Seq_in_index": 1,
+        "Column_name": "event_type_id",
+        "Collation": "A",
+        "Cardinality": 8,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "events",
+        "Non_unique": 1,
+        "Key_name": "source_file_id",
+        "Seq_in_index": 1,
+        "Column_name": "source_file_id",
+        "Collation": "A",
+        "Cardinality": 1,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      }
+    ],
+    "baseline": [
+      {
+        "Table": "bench_events_baseline",
+        "Non_unique": 0,
+        "Key_name": "PRIMARY",
+        "Seq_in_index": 1,
+        "Column_name": "event_id",
+        "Collation": "A",
+        "Cardinality": 172981,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_baseline",
+        "Non_unique": 0,
+        "Key_name": "event_identity",
+        "Seq_in_index": 1,
+        "Column_name": "run_id",
+        "Collation": "A",
+        "Cardinality": 395,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_baseline",
+        "Non_unique": 0,
+        "Key_name": "event_identity",
+        "Seq_in_index": 2,
+        "Column_name": "trial_scope",
+        "Collation": "A",
+        "Cardinality": 29109,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "YES",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_baseline",
+        "Non_unique": 0,
+        "Key_name": "event_identity",
+        "Seq_in_index": 3,
+        "Column_name": "event_type_id",
+        "Collation": "A",
+        "Cardinality": 172981,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_baseline",
+        "Non_unique": 0,
+        "Key_name": "event_identity",
+        "Seq_in_index": 4,
+        "Column_name": "event_sequence",
+        "Collation": "A",
+        "Cardinality": 172981,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_baseline",
+        "Non_unique": 1,
+        "Key_name": "events_trial_fk",
+        "Seq_in_index": 1,
+        "Column_name": "run_id",
+        "Collation": "A",
+        "Cardinality": 357,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_baseline",
+        "Non_unique": 1,
+        "Key_name": "events_trial_fk",
+        "Seq_in_index": 2,
+        "Column_name": "trial_id",
+        "Collation": "A",
+        "Cardinality": 29046,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "YES",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_baseline",
+        "Non_unique": 1,
+        "Key_name": "event_type_id",
+        "Seq_in_index": 1,
+        "Column_name": "event_type_id",
+        "Collation": "A",
+        "Cardinality": 3,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_baseline",
+        "Non_unique": 1,
+        "Key_name": "source_file_id",
+        "Seq_in_index": 1,
+        "Column_name": "source_file_id",
+        "Collation": "A",
+        "Cardinality": 171,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      }
+    ],
+    "composite": [
+      {
+        "Table": "bench_events_composite",
+        "Non_unique": 0,
+        "Key_name": "PRIMARY",
+        "Seq_in_index": 1,
+        "Column_name": "event_id",
+        "Collation": "A",
+        "Cardinality": 172981,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_composite",
+        "Non_unique": 0,
+        "Key_name": "event_identity",
+        "Seq_in_index": 1,
+        "Column_name": "run_id",
+        "Collation": "A",
+        "Cardinality": 352,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_composite",
+        "Non_unique": 0,
+        "Key_name": "event_identity",
+        "Seq_in_index": 2,
+        "Column_name": "trial_scope",
+        "Collation": "A",
+        "Cardinality": 29066,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "YES",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_composite",
+        "Non_unique": 0,
+        "Key_name": "event_identity",
+        "Seq_in_index": 3,
+        "Column_name": "event_type_id",
+        "Collation": "A",
+        "Cardinality": 172981,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_composite",
+        "Non_unique": 0,
+        "Key_name": "event_identity",
+        "Seq_in_index": 4,
+        "Column_name": "event_sequence",
+        "Collation": "A",
+        "Cardinality": 172981,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_composite",
+        "Non_unique": 1,
+        "Key_name": "events_trial_fk",
+        "Seq_in_index": 1,
+        "Column_name": "run_id",
+        "Collation": "A",
+        "Cardinality": 393,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_composite",
+        "Non_unique": 1,
+        "Key_name": "events_trial_fk",
+        "Seq_in_index": 2,
+        "Column_name": "trial_id",
+        "Collation": "A",
+        "Cardinality": 29471,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "YES",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_composite",
+        "Non_unique": 1,
+        "Key_name": "idx_events_run_onset",
+        "Seq_in_index": 1,
+        "Column_name": "run_id",
+        "Collation": "A",
+        "Cardinality": 378,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_composite",
+        "Non_unique": 1,
+        "Key_name": "idx_events_run_onset",
+        "Seq_in_index": 2,
+        "Column_name": "onset_seconds",
+        "Collation": "A",
+        "Cardinality": 172981,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_composite",
+        "Non_unique": 1,
+        "Key_name": "event_type_id",
+        "Seq_in_index": 1,
+        "Column_name": "event_type_id",
+        "Collation": "A",
+        "Cardinality": 3,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_composite",
+        "Non_unique": 1,
+        "Key_name": "source_file_id",
+        "Seq_in_index": 1,
+        "Column_name": "source_file_id",
+        "Collation": "A",
+        "Cardinality": 129,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      }
+    ],
+    "covering": [
+      {
+        "Table": "bench_events_covering",
+        "Non_unique": 0,
+        "Key_name": "PRIMARY",
+        "Seq_in_index": 1,
+        "Column_name": "event_id",
+        "Collation": "A",
+        "Cardinality": 172981,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_covering",
+        "Non_unique": 0,
+        "Key_name": "event_identity",
+        "Seq_in_index": 1,
+        "Column_name": "run_id",
+        "Collation": "A",
+        "Cardinality": 438,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_covering",
+        "Non_unique": 0,
+        "Key_name": "event_identity",
+        "Seq_in_index": 2,
+        "Column_name": "trial_scope",
+        "Collation": "A",
+        "Cardinality": 29239,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "YES",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_covering",
+        "Non_unique": 0,
+        "Key_name": "event_identity",
+        "Seq_in_index": 3,
+        "Column_name": "event_type_id",
+        "Collation": "A",
+        "Cardinality": 172981,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_covering",
+        "Non_unique": 0,
+        "Key_name": "event_identity",
+        "Seq_in_index": 4,
+        "Column_name": "event_sequence",
+        "Collation": "A",
+        "Cardinality": 172981,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_covering",
+        "Non_unique": 1,
+        "Key_name": "events_trial_fk",
+        "Seq_in_index": 1,
+        "Column_name": "run_id",
+        "Collation": "A",
+        "Cardinality": 393,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_covering",
+        "Non_unique": 1,
+        "Key_name": "events_trial_fk",
+        "Seq_in_index": 2,
+        "Column_name": "trial_id",
+        "Collation": "A",
+        "Cardinality": 27136,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "YES",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_covering",
+        "Non_unique": 1,
+        "Key_name": "event_type_id",
+        "Seq_in_index": 1,
+        "Column_name": "event_type_id",
+        "Collation": "A",
+        "Cardinality": 3,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_covering",
+        "Non_unique": 1,
+        "Key_name": "source_file_id",
+        "Seq_in_index": 1,
+        "Column_name": "source_file_id",
+        "Collation": "A",
+        "Cardinality": 46,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_covering",
+        "Non_unique": 1,
+        "Key_name": "idx_cover",
+        "Seq_in_index": 1,
+        "Column_name": "run_id",
+        "Collation": "A",
+        "Cardinality": 441,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_covering",
+        "Non_unique": 1,
+        "Key_name": "idx_cover",
+        "Seq_in_index": 2,
+        "Column_name": "onset_seconds",
+        "Collation": "A",
+        "Cardinality": 172615,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_covering",
+        "Non_unique": 1,
+        "Key_name": "idx_cover",
+        "Seq_in_index": 3,
+        "Column_name": "event_id",
+        "Collation": "A",
+        "Cardinality": 172615,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_covering",
+        "Non_unique": 1,
+        "Key_name": "idx_cover",
+        "Seq_in_index": 4,
+        "Column_name": "trial_id",
+        "Collation": "A",
+        "Cardinality": 172615,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "YES",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_covering",
+        "Non_unique": 1,
+        "Key_name": "idx_cover",
+        "Seq_in_index": 5,
+        "Column_name": "event_type_id",
+        "Collation": "A",
+        "Cardinality": 172615,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_covering",
+        "Non_unique": 1,
+        "Key_name": "idx_cover",
+        "Seq_in_index": 6,
+        "Column_name": "duration_seconds",
+        "Collation": "A",
+        "Cardinality": 172981,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      }
+    ],
+    "reversed": [
+      {
+        "Table": "bench_events_reversed",
+        "Non_unique": 0,
+        "Key_name": "PRIMARY",
+        "Seq_in_index": 1,
+        "Column_name": "event_id",
+        "Collation": "A",
+        "Cardinality": 172981,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_reversed",
+        "Non_unique": 0,
+        "Key_name": "event_identity",
+        "Seq_in_index": 1,
+        "Column_name": "run_id",
+        "Collation": "A",
+        "Cardinality": 395,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_reversed",
+        "Non_unique": 0,
+        "Key_name": "event_identity",
+        "Seq_in_index": 2,
+        "Column_name": "trial_scope",
+        "Collation": "A",
+        "Cardinality": 28892,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "YES",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_reversed",
+        "Non_unique": 0,
+        "Key_name": "event_identity",
+        "Seq_in_index": 3,
+        "Column_name": "event_type_id",
+        "Collation": "A",
+        "Cardinality": 172981,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_reversed",
+        "Non_unique": 0,
+        "Key_name": "event_identity",
+        "Seq_in_index": 4,
+        "Column_name": "event_sequence",
+        "Collation": "A",
+        "Cardinality": 172981,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_reversed",
+        "Non_unique": 1,
+        "Key_name": "events_trial_fk",
+        "Seq_in_index": 1,
+        "Column_name": "run_id",
+        "Collation": "A",
+        "Cardinality": 357,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_reversed",
+        "Non_unique": 1,
+        "Key_name": "events_trial_fk",
+        "Seq_in_index": 2,
+        "Column_name": "trial_id",
+        "Collation": "A",
+        "Cardinality": 29400,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "YES",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_reversed",
+        "Non_unique": 1,
+        "Key_name": "event_type_id",
+        "Seq_in_index": 1,
+        "Column_name": "event_type_id",
+        "Collation": "A",
+        "Cardinality": 27,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_reversed",
+        "Non_unique": 1,
+        "Key_name": "source_file_id",
+        "Seq_in_index": 1,
+        "Column_name": "source_file_id",
+        "Collation": "A",
+        "Cardinality": 171,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_reversed",
+        "Non_unique": 1,
+        "Key_name": "idx_reversed",
+        "Seq_in_index": 1,
+        "Column_name": "onset_seconds",
+        "Collation": "A",
+        "Cardinality": 167573,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_events_reversed",
+        "Non_unique": 1,
+        "Key_name": "idx_reversed",
+        "Seq_in_index": 2,
+        "Column_name": "run_id",
+        "Collation": "A",
+        "Cardinality": 167573,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      }
+    ],
+    "wide": [
+      {
+        "Table": "bench_trial_wide",
+        "Non_unique": 0,
+        "Key_name": "PRIMARY",
+        "Seq_in_index": 1,
+        "Column_name": "trial_id",
+        "Collation": "A",
+        "Cardinality": 59802,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_trial_wide",
+        "Non_unique": 1,
+        "Key_name": "idx_wide_run",
+        "Seq_in_index": 1,
+        "Column_name": "run_type",
+        "Collation": "A",
+        "Cardinality": 2,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_trial_wide",
+        "Non_unique": 1,
+        "Key_name": "idx_wide_run",
+        "Seq_in_index": 2,
+        "Column_name": "participant_id",
+        "Collation": "A",
+        "Cardinality": 332,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      },
+      {
+        "Table": "bench_trial_wide",
+        "Non_unique": 1,
+        "Key_name": "idx_wide_run",
+        "Seq_in_index": 3,
+        "Column_name": "reward_condition",
+        "Collation": "A",
+        "Cardinality": 662,
+        "Sub_part": null,
+        "Packed": null,
+        "Null": "YES",
+        "Index_type": "BTREE",
+        "Comment": "",
+        "Index_comment": "",
+        "Visible": "YES",
+        "Expression": null
+      }
+    ]
+  },
+  "mysql_version": "8.4.11",
+  "event_table_rows": 172854,
+  "wide_refresh_ms": 527.9068341478705,
+  "extensibility": {
+    "generic_joins": {
+      "sql": "SELECT participant_id,reward_condition,COUNT(*) AS n,SUM(reward) AS rewards\n            FROM trial_context WHERE run_type='functional' AND response_valid=1\n            GROUP BY participant_id,reward_condition ORDER BY participant_id,reward_condition",
+      "params": [],
+      "explain_analyze": "-> Sort: trial_context.participant_id, trial_context.reward_condition  (actual time=93.8..93.9 rows=378 loops=1)\n    -> Table scan on <temporary>  (actual time=93.7..93.8 rows=378 loops=1)\n        -> Aggregate using temporary table  (actual time=93.7..93.7 rows=378 loops=1)\n            -> Nested loop inner join  (cost=9704 rows=2479) (actual time=0.112..75.4 rows=28512 loops=1)\n                -> Nested loop inner join  (cost=8836 rows=2479) (actual time=0.107..36.5 rows=28512 loops=1)\n                    -> Nested loop inner join  (cost=161 rows=284) (actual time=0.0329..0.822 rows=378 loops=1)\n                        -> Nested loop inner join  (cost=85.3 rows=189) (actual time=0.0288..0.364 rows=189 loops=1)\n                            -> Covering index scan on p using source_file_id  (cost=19.2 rows=189) (actual time=0.023..0.0483 rows=189 loops=1)\n                            -> Covering index lookup on s using session_identity (participant_id=p.participant_id)  (cost=0.251 rows=1) (actual time=0.00108..0.00148 rows=1 loops=189)\n                        -> Filter: (r.run_type = 'functional')  (cost=0.251 rows=1.5) (actual time=0.00147..0.00218 rows=2 loops=189)\n                            -> Covering index lookup on r using run_identity (session_id=s.session_id, run_type='functional')  (cost=0.251 rows=1.5) (actual time=0.00117..0.0016 rows=2 loops=189)\n                    -> Filter: (t.response_valid = 1)  (cost=21.9 rows=8.74) (actual time=0.0776..0.0892 rows=75.4 loops=378)\n                        -> Index lookup on t using trial_identity (run_id=r.run_id)  (cost=21.9 rows=87.4) (actual time=0.0775..0.0836 rows=77 loops=378)\n                -> Single-row index lookup on d using PRIMARY (trial_id=t.trial_id)  (cost=0.25 rows=1) (actual time=0.00116..0.0012 rows=1 loops=28512)\n",
+      "estimated_plan": {
+        "query_block": {
+          "select_id": 1,
+          "cost_info": {
+            "query_cost": "9703.66"
+          },
+          "ordering_operation": {
+            "using_filesort": false,
+            "grouping_operation": {
+              "using_temporary_table": true,
+              "using_filesort": true,
+              "nested_loop": [
+                {
+                  "table": {
+                    "table_name": "p",
+                    "access_type": "index",
+                    "possible_keys": [
+                      "PRIMARY"
+                    ],
+                    "key": "source_file_id",
+                    "used_key_parts": [
+                      "source_file_id"
+                    ],
+                    "key_length": "4",
+                    "rows_examined_per_scan": 189,
+                    "rows_produced_per_join": 189,
+                    "filtered": "100.00",
+                    "using_index": true,
+                    "cost_info": {
+                      "read_cost": "0.25",
+                      "eval_cost": "18.90",
+                      "prefix_cost": "19.15",
+                      "data_read_per_join": "122K"
+                    },
+                    "used_columns": [
+                      "participant_id"
+                    ]
+                  }
+                },
+                {
+                  "table": {
+                    "table_name": "s",
+                    "access_type": "ref",
+                    "possible_keys": [
+                      "PRIMARY",
+                      "session_identity"
+                    ],
+                    "key": "session_identity",
+                    "used_key_parts": [
+                      "participant_id"
+                    ],
+                    "key_length": "4",
+                    "ref": [
+                      "neurodb.p.participant_id"
+                    ],
+                    "rows_examined_per_scan": 1,
+                    "rows_produced_per_join": 189,
+                    "filtered": "100.00",
+                    "using_index": true,
+                    "cost_info": {
+                      "read_cost": "47.25",
+                      "eval_cost": "18.90",
+                      "prefix_cost": "85.30",
+                      "data_read_per_join": "32K"
+                    },
+                    "used_columns": [
+                      "session_id",
+                      "participant_id"
+                    ]
+                  }
+                },
+                {
+                  "table": {
+                    "table_name": "r",
+                    "access_type": "ref",
+                    "possible_keys": [
+                      "PRIMARY",
+                      "run_identity"
+                    ],
+                    "key": "run_identity",
+                    "used_key_parts": [
+                      "session_id",
+                      "run_type"
+                    ],
+                    "key_length": "5",
+                    "ref": [
+                      "neurodb.s.session_id",
+                      "const"
+                    ],
+                    "rows_examined_per_scan": 1,
+                    "rows_produced_per_join": 283,
+                    "filtered": "100.00",
+                    "using_index": true,
+                    "cost_info": {
+                      "read_cost": "47.28",
+                      "eval_cost": "28.35",
+                      "prefix_cost": "160.93",
+                      "data_read_per_join": "55K"
+                    },
+                    "used_columns": [
+                      "run_id",
+                      "session_id",
+                      "run_type"
+                    ],
+                    "attached_condition": "(`neurodb`.`r`.`run_type` = 'functional')"
+                  }
+                },
+                {
+                  "table": {
+                    "table_name": "t",
+                    "access_type": "ref",
+                    "possible_keys": [
+                      "PRIMARY",
+                      "trial_identity",
+                      "run_trial_identity"
+                    ],
+                    "key": "trial_identity",
+                    "used_key_parts": [
+                      "run_id"
+                    ],
+                    "key_length": "4",
+                    "ref": [
+                      "neurodb.r.run_id"
+                    ],
+                    "rows_examined_per_scan": 87,
+                    "rows_produced_per_join": 2478,
+                    "filtered": "10.00",
+                    "cost_info": {
+                      "read_cost": "6196.57",
+                      "eval_cost": "247.86",
+                      "prefix_cost": "8836.14",
+                      "data_read_per_join": "77K"
+                    },
+                    "used_columns": [
+                      "trial_id",
+                      "run_id",
+                      "response_valid"
+                    ],
+                    "attached_condition": "(`neurodb`.`t`.`response_valid` = 1)"
+                  }
+                },
+                {
+                  "table": {
+                    "table_name": "d",
+                    "access_type": "eq_ref",
+                    "possible_keys": [
+                      "PRIMARY"
+                    ],
+                    "key": "PRIMARY",
+                    "used_key_parts": [
+                      "trial_id"
+                    ],
+                    "key_length": "8",
+                    "ref": [
+                      "neurodb.t.trial_id"
+                    ],
+                    "rows_examined_per_scan": 1,
+                    "rows_produced_per_join": 2478,
+                    "filtered": "100.00",
+                    "cost_info": {
+                      "read_cost": "619.66",
+                      "eval_cost": "247.86",
+                      "prefix_cost": "9703.66",
+                      "data_read_per_join": "96K"
+                    },
+                    "used_columns": [
+                      "trial_id",
+                      "reward",
+                      "reward_condition"
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "samples": [
+        {
+          "milliseconds": 68.089667,
+          "handler_reads": 88023,
+          "handler_counters": {
+            "Handler_read_first": 1,
+            "Handler_read_key": 57781,
+            "Handler_read_last": 0,
+            "Handler_read_next": 29862,
+            "Handler_read_prev": 0,
+            "Handler_read_rnd": 0,
+            "Handler_read_rnd_next": 379
+          },
+          "returned_rows": 378,
+          "result_sha256": "2b14583f66ed6cb54dc2fba54303391b52e40be1c5543fc41026a7c1e89371ae"
+        },
+        {
+          "milliseconds": 67.321458,
+          "handler_reads": 88023,
+          "handler_counters": {
+            "Handler_read_first": 1,
+            "Handler_read_key": 57781,
+            "Handler_read_last": 0,
+            "Handler_read_next": 29862,
+            "Handler_read_prev": 0,
+            "Handler_read_rnd": 0,
+            "Handler_read_rnd_next": 379
+          },
+          "returned_rows": 378,
+          "result_sha256": "2b14583f66ed6cb54dc2fba54303391b52e40be1c5543fc41026a7c1e89371ae"
+        },
+        {
+          "milliseconds": 66.293125,
+          "handler_reads": 88023,
+          "handler_counters": {
+            "Handler_read_first": 1,
+            "Handler_read_key": 57781,
+            "Handler_read_last": 0,
+            "Handler_read_next": 29862,
+            "Handler_read_prev": 0,
+            "Handler_read_rnd": 0,
+            "Handler_read_rnd_next": 379
+          },
+          "returned_rows": 378,
+          "result_sha256": "2b14583f66ed6cb54dc2fba54303391b52e40be1c5543fc41026a7c1e89371ae"
+        },
+        {
+          "milliseconds": 65.521708,
+          "handler_reads": 88023,
+          "handler_counters": {
+            "Handler_read_first": 1,
+            "Handler_read_key": 57781,
+            "Handler_read_last": 0,
+            "Handler_read_next": 29862,
+            "Handler_read_prev": 0,
+            "Handler_read_rnd": 0,
+            "Handler_read_rnd_next": 379
+          },
+          "returned_rows": 378,
+          "result_sha256": "2b14583f66ed6cb54dc2fba54303391b52e40be1c5543fc41026a7c1e89371ae"
+        },
+        {
+          "milliseconds": 67.809459,
+          "handler_reads": 88023,
+          "handler_counters": {
+            "Handler_read_first": 1,
+            "Handler_read_key": 57781,
+            "Handler_read_last": 0,
+            "Handler_read_next": 29862,
+            "Handler_read_prev": 0,
+            "Handler_read_rnd": 0,
+            "Handler_read_rnd_next": 379
+          },
+          "returned_rows": 378,
+          "result_sha256": "2b14583f66ed6cb54dc2fba54303391b52e40be1c5543fc41026a7c1e89371ae"
+        },
+        {
+          "milliseconds": 66.625041,
+          "handler_reads": 88023,
+          "handler_counters": {
+            "Handler_read_first": 1,
+            "Handler_read_key": 57781,
+            "Handler_read_last": 0,
+            "Handler_read_next": 29862,
+            "Handler_read_prev": 0,
+            "Handler_read_rnd": 0,
+            "Handler_read_rnd_next": 379
+          },
+          "returned_rows": 378,
+          "result_sha256": "2b14583f66ed6cb54dc2fba54303391b52e40be1c5543fc41026a7c1e89371ae"
+        },
+        {
+          "milliseconds": 66.027041,
+          "handler_reads": 88023,
+          "handler_counters": {
+            "Handler_read_first": 1,
+            "Handler_read_key": 57781,
+            "Handler_read_last": 0,
+            "Handler_read_next": 29862,
+            "Handler_read_prev": 0,
+            "Handler_read_rnd": 0,
+            "Handler_read_rnd_next": 379
+          },
+          "returned_rows": 378,
+          "result_sha256": "2b14583f66ed6cb54dc2fba54303391b52e40be1c5543fc41026a7c1e89371ae"
+        },
+        {
+          "milliseconds": 67.054875,
+          "handler_reads": 88023,
+          "handler_counters": {
+            "Handler_read_first": 1,
+            "Handler_read_key": 57781,
+            "Handler_read_last": 0,
+            "Handler_read_next": 29862,
+            "Handler_read_prev": 0,
+            "Handler_read_rnd": 0,
+            "Handler_read_rnd_next": 379
+          },
+          "returned_rows": 378,
+          "result_sha256": "2b14583f66ed6cb54dc2fba54303391b52e40be1c5543fc41026a7c1e89371ae"
+        },
+        {
+          "milliseconds": 66.36775,
+          "handler_reads": 88023,
+          "handler_counters": {
+            "Handler_read_first": 1,
+            "Handler_read_key": 57781,
+            "Handler_read_last": 0,
+            "Handler_read_next": 29862,
+            "Handler_read_prev": 0,
+            "Handler_read_rnd": 0,
+            "Handler_read_rnd_next": 379
+          },
+          "returned_rows": 378,
+          "result_sha256": "2b14583f66ed6cb54dc2fba54303391b52e40be1c5543fc41026a7c1e89371ae"
+        }
+      ],
+      "median_ms": 66.625041,
+      "median_handler_reads": 88023,
+      "returned_rows": 378
+    },
+    "wide_materialized": {
+      "sql": "SELECT participant_id,reward_condition,COUNT(*) AS n,SUM(reward) AS rewards\n            FROM bench_trial_wide WHERE run_type='functional' AND response_valid=1\n            GROUP BY participant_id,reward_condition ORDER BY participant_id,reward_condition",
+      "params": [],
+      "explain_analyze": "-> Group aggregate: count(0), sum(bench_trial_wide.reward)  (cost=2233 rows=1343) (actual time=0.391..47.1 rows=378 loops=1)\n    -> Filter: (bench_trial_wide.response_valid = 1)  (cost=1934 rows=2990) (actual time=0.369..44.3 rows=28512 loops=1)\n        -> Index lookup on bench_trial_wide using idx_wide_run (run_type='functional'), with index condition: (bench_trial_wide.run_type = 'functional')  (cost=1934 rows=29901) (actual time=0.368..42.1 rows=29106 loops=1)\n",
+      "estimated_plan": {
+        "query_block": {
+          "select_id": 1,
+          "cost_info": {
+            "query_cost": "4625.10"
+          },
+          "ordering_operation": {
+            "using_filesort": false,
+            "grouping_operation": {
+              "using_filesort": false,
+              "table": {
+                "table_name": "bench_trial_wide",
+                "access_type": "ref",
+                "possible_keys": [
+                  "idx_wide_run"
+                ],
+                "key": "idx_wide_run",
+                "used_key_parts": [
+                  "run_type"
+                ],
+                "key_length": "1",
+                "ref": [
+                  "const"
+                ],
+                "rows_examined_per_scan": 29901,
+                "rows_produced_per_join": 2990,
+                "filtered": "10.00",
+                "index_condition": "(`neurodb`.`bench_trial_wide`.`run_type` = 'functional')",
+                "cost_info": {
+                  "read_cost": "1635.00",
+                  "eval_cost": "299.01",
+                  "prefix_cost": "4625.10",
+                  "data_read_per_join": "1M"
+                },
+                "used_columns": [
+                  "participant_id",
+                  "run_type",
+                  "trial_id",
+                  "response_valid",
+                  "reward",
+                  "reward_condition"
+                ],
+                "attached_condition": "(`neurodb`.`bench_trial_wide`.`response_valid` = 1)"
+              }
+            }
+          }
+        }
+      },
+      "samples": [
+        {
+          "milliseconds": 40.14325,
+          "handler_reads": 29107,
+          "handler_counters": {
+            "Handler_read_first": 0,
+            "Handler_read_key": 1,
+            "Handler_read_last": 0,
+            "Handler_read_next": 29106,
+            "Handler_read_prev": 0,
+            "Handler_read_rnd": 0,
+            "Handler_read_rnd_next": 0
+          },
+          "returned_rows": 378,
+          "result_sha256": "2b14583f66ed6cb54dc2fba54303391b52e40be1c5543fc41026a7c1e89371ae"
+        },
+        {
+          "milliseconds": 34.688083,
+          "handler_reads": 29107,
+          "handler_counters": {
+            "Handler_read_first": 0,
+            "Handler_read_key": 1,
+            "Handler_read_last": 0,
+            "Handler_read_next": 29106,
+            "Handler_read_prev": 0,
+            "Handler_read_rnd": 0,
+            "Handler_read_rnd_next": 0
+          },
+          "returned_rows": 378,
+          "result_sha256": "2b14583f66ed6cb54dc2fba54303391b52e40be1c5543fc41026a7c1e89371ae"
+        },
+        {
+          "milliseconds": 34.850375,
+          "handler_reads": 29107,
+          "handler_counters": {
+            "Handler_read_first": 0,
+            "Handler_read_key": 1,
+            "Handler_read_last": 0,
+            "Handler_read_next": 29106,
+            "Handler_read_prev": 0,
+            "Handler_read_rnd": 0,
+            "Handler_read_rnd_next": 0
+          },
+          "returned_rows": 378,
+          "result_sha256": "2b14583f66ed6cb54dc2fba54303391b52e40be1c5543fc41026a7c1e89371ae"
+        },
+        {
+          "milliseconds": 34.809417,
+          "handler_reads": 29107,
+          "handler_counters": {
+            "Handler_read_first": 0,
+            "Handler_read_key": 1,
+            "Handler_read_last": 0,
+            "Handler_read_next": 29106,
+            "Handler_read_prev": 0,
+            "Handler_read_rnd": 0,
+            "Handler_read_rnd_next": 0
+          },
+          "returned_rows": 378,
+          "result_sha256": "2b14583f66ed6cb54dc2fba54303391b52e40be1c5543fc41026a7c1e89371ae"
+        },
+        {
+          "milliseconds": 35.703541,
+          "handler_reads": 29107,
+          "handler_counters": {
+            "Handler_read_first": 0,
+            "Handler_read_key": 1,
+            "Handler_read_last": 0,
+            "Handler_read_next": 29106,
+            "Handler_read_prev": 0,
+            "Handler_read_rnd": 0,
+            "Handler_read_rnd_next": 0
+          },
+          "returned_rows": 378,
+          "result_sha256": "2b14583f66ed6cb54dc2fba54303391b52e40be1c5543fc41026a7c1e89371ae"
+        },
+        {
+          "milliseconds": 35.081708,
+          "handler_reads": 29107,
+          "handler_counters": {
+            "Handler_read_first": 0,
+            "Handler_read_key": 1,
+            "Handler_read_last": 0,
+            "Handler_read_next": 29106,
+            "Handler_read_prev": 0,
+            "Handler_read_rnd": 0,
+            "Handler_read_rnd_next": 0
+          },
+          "returned_rows": 378,
+          "result_sha256": "2b14583f66ed6cb54dc2fba54303391b52e40be1c5543fc41026a7c1e89371ae"
+        },
+        {
+          "milliseconds": 35.125917,
+          "handler_reads": 29107,
+          "handler_counters": {
+            "Handler_read_first": 0,
+            "Handler_read_key": 1,
+            "Handler_read_last": 0,
+            "Handler_read_next": 29106,
+            "Handler_read_prev": 0,
+            "Handler_read_rnd": 0,
+            "Handler_read_rnd_next": 0
+          },
+          "returned_rows": 378,
+          "result_sha256": "2b14583f66ed6cb54dc2fba54303391b52e40be1c5543fc41026a7c1e89371ae"
+        },
+        {
+          "milliseconds": 34.624208,
+          "handler_reads": 29107,
+          "handler_counters": {
+            "Handler_read_first": 0,
+            "Handler_read_key": 1,
+            "Handler_read_last": 0,
+            "Handler_read_next": 29106,
+            "Handler_read_prev": 0,
+            "Handler_read_rnd": 0,
+            "Handler_read_rnd_next": 0
+          },
+          "returned_rows": 378,
+          "result_sha256": "2b14583f66ed6cb54dc2fba54303391b52e40be1c5543fc41026a7c1e89371ae"
+        },
+        {
+          "milliseconds": 35.26125,
+          "handler_reads": 29107,
+          "handler_counters": {
+            "Handler_read_first": 0,
+            "Handler_read_key": 1,
+            "Handler_read_last": 0,
+            "Handler_read_next": 29106,
+            "Handler_read_prev": 0,
+            "Handler_read_rnd": 0,
+            "Handler_read_rnd_next": 0
+          },
+          "returned_rows": 378,
+          "result_sha256": "2b14583f66ed6cb54dc2fba54303391b52e40be1c5543fc41026a7c1e89371ae"
+        }
+      ],
+      "median_ms": 35.081708,
+      "median_handler_reads": 29107,
+      "returned_rows": 378
+    }
+  },
+  "wide_rows": 48951,
+  "wide_serialized_json_bytes": 28987362,
+  "wide_physical_storage": {
+    "DATA_LENGTH": 6832128,
+    "INDEX_LENGTH": 2637824
+  },
+  "storage_note": "Physical data and index allocation measured from a same-schema wide copy in the isolated neurodb_benchmark database after ANALYZE TABLE. The copy is removed after measurement. JSON bytes are a separate logical payload measure. Physical allocation includes page slack, not just field bytes.",
+  "durable_table_storage": [
+    {
+      "TABLE_NAME": "event_types",
+      "TABLE_ROWS": 8,
+      "DATA_LENGTH": 16384,
+      "INDEX_LENGTH": 16384
+    },
+    {
+      "TABLE_NAME": "events",
+      "TABLE_ROWS": 171930,
+      "DATA_LENGTH": 17350656,
+      "INDEX_LENGTH": 25772032
+    },
+    {
+      "TABLE_NAME": "fitting_jobs",
+      "TABLE_ROWS": 1,
+      "DATA_LENGTH": 16384,
+      "INDEX_LENGTH": 16384
+    },
+    {
+      "TABLE_NAME": "ingestion_records",
+      "TABLE_ROWS": 2079,
+      "DATA_LENGTH": 262144,
+      "INDEX_LENGTH": 65536
+    },
+    {
+      "TABLE_NAME": "ingestion_runs",
+      "TABLE_ROWS": 3,
+      "DATA_LENGTH": 16384,
+      "INDEX_LENGTH": 0
+    },
+    {
+      "TABLE_NAME": "latent_values",
+      "TABLE_ROWS": 3870,
+      "DATA_LENGTH": 212992,
+      "INDEX_LENGTH": 262144
+    },
+    {
+      "TABLE_NAME": "model_specifications",
+      "TABLE_ROWS": 1,
+      "DATA_LENGTH": 16384,
+      "INDEX_LENGTH": 16384
+    },
+    {
+      "TABLE_NAME": "parameter_definitions",
+      "TABLE_ROWS": 12,
+      "DATA_LENGTH": 16384,
+      "INDEX_LENGTH": 0
+    },
+    {
+      "TABLE_NAME": "parameter_estimates",
+      "TABLE_ROWS": 12,
+      "DATA_LENGTH": 16384,
+      "INDEX_LENGTH": 0
+    },
+    {
+      "TABLE_NAME": "participant_fits",
+      "TABLE_ROWS": 1,
+      "DATA_LENGTH": 16384,
+      "INDEX_LENGTH": 49152
+    },
+    {
+      "TABLE_NAME": "participant_measures",
+      "TABLE_ROWS": 0,
+      "DATA_LENGTH": 16384,
+      "INDEX_LENGTH": 16384
+    },
+    {
+      "TABLE_NAME": "participants",
+      "TABLE_ROWS": 189,
+      "DATA_LENGTH": 16384,
+      "INDEX_LENGTH": 32768
+    },
+    {
+      "TABLE_NAME": "runs",
+      "TABLE_ROWS": 567,
+      "DATA_LENGTH": 49152,
+      "INDEX_LENGTH": 32768
+    },
+    {
+      "TABLE_NAME": "sessions",
+      "TABLE_ROWS": 189,
+      "DATA_LENGTH": 16384,
+      "INDEX_LENGTH": 16384
+    },
+    {
+      "TABLE_NAME": "source_files",
+      "TABLE_ROWS": 760,
+      "DATA_LENGTH": 294912,
+      "INDEX_LENGTH": 180224
+    },
+    {
+      "TABLE_NAME": "studies",
+      "TABLE_ROWS": 1,
+      "DATA_LENGTH": 16384,
+      "INDEX_LENGTH": 16384
+    },
+    {
+      "TABLE_NAME": "trials",
+      "TABLE_ROWS": 49126,
+      "DATA_LENGTH": 2637824,
+      "INDEX_LENGTH": 5816320
+    },
+    {
+      "TABLE_NAME": "two_step_trial_details",
+      "TABLE_ROWS": 48984,
+      "DATA_LENGTH": 3686400,
+      "INDEX_LENGTH": 0
+    },
+    {
+      "TABLE_NAME": "variable_definitions",
+      "TABLE_ROWS": 15,
+      "DATA_LENGTH": 16384,
+      "INDEX_LENGTH": 32768
+    }
+  ]
+}

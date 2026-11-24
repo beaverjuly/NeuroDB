@@ -1,0 +1,10 @@
+pymysql
+cryptography
+pandas
+numpy
+scipy
+matplotlib
+jupyterlab
+ipywidgets
+nbconvert
+pytest

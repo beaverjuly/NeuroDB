@@ -1,0 +1,19 @@
+experiment	window_seconds	design	median_ms	handler_reads	returned_rows	selectivity
+event window	10.0	baseline	0.664	463	7	0.015151515151515152
+event window	10.0	composite	0.16375	8	7	0.015151515151515152
+event window	10.0	covering	0.1655	8	7	0.015151515151515152
+event window	10.0	reversed	0.634042	463	7	0.015151515151515152
+event window	60.0	baseline	0.812958	463	40	0.08658008658008658
+event window	60.0	composite	0.354916	41	40	0.08658008658008658
+event window	60.0	covering	0.324208	41	40	0.08658008658008658
+event window	60.0	reversed	0.788917	463	40	0.08658008658008658
+event window	300.0	baseline	1.531458	463	195	0.42207792207792205
+event window	300.0	composite	1.225875	196	195	0.42207792207792205
+event window	300.0	covering	1.053375	196	195	0.42207792207792205
+event window	300.0	reversed	1.500917	463	195	0.42207792207792205
+event window	720.0	baseline	2.711833	463	462	1.0
+event window	720.0	composite	2.685	463	462	1.0
+event window	720.0	covering	2.273208	463	462	1.0
+event window	720.0	reversed	2.68575	463	462	1.0
+behavior aggregation		generic_joins	66.625041	88023	378	
+behavior aggregation		wide_materialized	35.081708	29107	378	

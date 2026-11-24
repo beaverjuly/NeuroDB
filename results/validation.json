@@ -1,0 +1,76 @@
+{
+  "checked_at": "2026-11-24T18:56:16.192285+00:00",
+  "mysql_version": "8.4.11",
+  "counts": {
+    "participants": 189,
+    "sessions": 189,
+    "runs": 567,
+    "trials": 48951,
+    "two_step_trial_details": 48951,
+    "events": 172854,
+    "source_files": 760,
+    "latent_values": 3870,
+    "parameter_estimates": 12
+  },
+  "cohort": [
+    {
+      "inclusion_status": "validated",
+      "participants": 189
+    }
+  ],
+  "checks": {
+    "mysql_84": true,
+    "minimum_30_validated": true,
+    "one_detail_per_trial": true,
+    "event_run_consistency": true,
+    "events_within_task_run": true,
+    "fit_trial_participant_consistency": true,
+    "fit_variable_model_consistency": true,
+    "parameter_definition_consistency": true,
+    "no_latents_on_missed_trials": true,
+    "no_imputed_missed_outcomes": true,
+    "excluded_participants_have_no_trials": true,
+    "latest_ingestion_passed": true,
+    "source_checksums": true,
+    "pilot_259_trials": true,
+    "pilot_921_events": true,
+    "expected_event_patterns": true,
+    "q1_independent_reference": true
+  },
+  "queries": {
+    "Q1": {
+      "returned_rows": 4,
+      "executed": true
+    },
+    "Q2": {
+      "returned_rows": 6,
+      "executed": true
+    },
+    "Q3": {
+      "returned_rows": 40,
+      "executed": true
+    },
+    "Q4": {
+      "returned_rows": 2,
+      "executed": true
+    },
+    "Q5": {
+      "returned_rows": 2,
+      "executed": true
+    },
+    "Q6": {
+      "returned_rows": 1,
+      "executed": true
+    },
+    "Q7": {
+      "returned_rows": 189,
+      "executed": true
+    },
+    "Q8": {
+      "returned_rows": 40,
+      "executed": true
+    }
+  },
+  "bad_sources": [],
+  "passed": true
+}

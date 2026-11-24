@@ -1,0 +1,149 @@
+{
+  "checked_at": "2026-11-22T04:54:10.622703+00:00",
+  "before": {
+    "event_types": {
+      "rows": 8,
+      "mysql_checksum": 2288259741
+    },
+    "events": {
+      "rows": 172854,
+      "mysql_checksum": 840184805
+    },
+    "fitting_jobs": {
+      "rows": 1,
+      "mysql_checksum": 449593660
+    },
+    "latent_values": {
+      "rows": 3870,
+      "mysql_checksum": 683843785
+    },
+    "model_specifications": {
+      "rows": 1,
+      "mysql_checksum": 3502997664
+    },
+    "parameter_definitions": {
+      "rows": 12,
+      "mysql_checksum": 336884189
+    },
+    "parameter_estimates": {
+      "rows": 12,
+      "mysql_checksum": 1835516715
+    },
+    "participant_fits": {
+      "rows": 1,
+      "mysql_checksum": 3716002190
+    },
+    "participant_measures": {
+      "rows": 0,
+      "mysql_checksum": 0
+    },
+    "participants": {
+      "rows": 189,
+      "mysql_checksum": 1417402720
+    },
+    "runs": {
+      "rows": 567,
+      "mysql_checksum": 3511794276
+    },
+    "sessions": {
+      "rows": 189,
+      "mysql_checksum": 745651062
+    },
+    "source_files": {
+      "rows": 760,
+      "mysql_checksum": 2326682357
+    },
+    "studies": {
+      "rows": 1,
+      "mysql_checksum": 3032444149
+    },
+    "trials": {
+      "rows": 48951,
+      "mysql_checksum": 3916697323
+    },
+    "two_step_trial_details": {
+      "rows": 48951,
+      "mysql_checksum": 2962156231
+    },
+    "variable_definitions": {
+      "rows": 15,
+      "mysql_checksum": 1597663127
+    }
+  },
+  "after": {
+    "event_types": {
+      "rows": 8,
+      "mysql_checksum": 2288259741
+    },
+    "events": {
+      "rows": 172854,
+      "mysql_checksum": 840184805
+    },
+    "fitting_jobs": {
+      "rows": 1,
+      "mysql_checksum": 449593660
+    },
+    "latent_values": {
+      "rows": 3870,
+      "mysql_checksum": 683843785
+    },
+    "model_specifications": {
+      "rows": 1,
+      "mysql_checksum": 3502997664
+    },
+    "parameter_definitions": {
+      "rows": 12,
+      "mysql_checksum": 336884189
+    },
+    "parameter_estimates": {
+      "rows": 12,
+      "mysql_checksum": 1835516715
+    },
+    "participant_fits": {
+      "rows": 1,
+      "mysql_checksum": 3716002190
+    },
+    "participant_measures": {
+      "rows": 0,
+      "mysql_checksum": 0
+    },
+    "participants": {
+      "rows": 189,
+      "mysql_checksum": 1417402720
+    },
+    "runs": {
+      "rows": 567,
+      "mysql_checksum": 3511794276
+    },
+    "sessions": {
+      "rows": 189,
+      "mysql_checksum": 745651062
+    },
+    "source_files": {
+      "rows": 760,
+      "mysql_checksum": 2326682357
+    },
+    "studies": {
+      "rows": 1,
+      "mysql_checksum": 3032444149
+    },
+    "trials": {
+      "rows": 48951,
+      "mysql_checksum": 3916697323
+    },
+    "two_step_trial_details": {
+      "rows": 48951,
+      "mysql_checksum": 2962156231
+    },
+    "variable_definitions": {
+      "rows": 15,
+      "mysql_checksum": 1597663127
+    }
+  },
+  "passed": true,
+  "excluded_audit_tables": [
+    "ingestion_runs",
+    "ingestion_records"
+  ],
+  "method": "Exact row counts and MySQL CHECKSUM TABLE EXTENDED before and after full reload"
+}

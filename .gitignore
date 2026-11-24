@@ -1,0 +1,14 @@
+.venv/
+.runtime/
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
+data/raw/*
+!data/raw/manifest.json
+!data/raw/osf_license.json
+data/derived/
+database/*.sql
+results/interactive_*.tsv
+*.log
+!results/tests.log

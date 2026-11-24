@@ -1,0 +1,188 @@
+erDiagram
+    studies {
+        int study_id PK
+        varchar accession
+        varchar title
+        varchar doi
+        varchar snapshot
+    }
+    source_files {
+        int source_file_id PK
+        varchar local_path
+        varchar source_url
+        varchar snapshot
+        char checksum
+        varchar license_status
+        boolean available_on_disk
+    }
+    ingestion_runs {
+        bigint ingestion_id PK
+        varchar transform_version
+        char code_checksum
+        timestamp executed_at
+        enum status
+        text message
+    }
+    ingestion_records {
+        bigint ingestion_id PK,FK
+        int source_file_id PK,FK
+        int rows_loaded
+        varchar validation_status
+        text message
+    }
+    participants {
+        int participant_id PK
+        int study_id FK
+        char source_person_id
+        varchar bids_label
+        tinyint task_order
+        varchar design_variant
+        varchar inclusion_status
+        varchar analytic_inclusion_status
+        text exclusion_reason
+        text metadata_note
+        int source_file_id FK
+    }
+    sessions {
+        int session_id PK
+        int participant_id FK
+        varchar session_label
+    }
+    runs {
+        int run_id PK
+        int session_id FK
+        enum run_type
+        smallint run_number
+        smallint behavior_run_number
+        varchar source_run_label
+        double repetition_time
+        int scan_count
+        double run_duration
+        int source_file_id FK
+    }
+    trials {
+        bigint trial_id PK
+        int run_id FK
+        int trial_number
+        int source_trial_number
+        int source_row_number
+        boolean response_valid
+        int source_file_id FK
+    }
+    two_step_trial_details {
+        bigint trial_id PK,FK
+        tinyint chosen_ship
+        tinyint visited_planet
+        tinyint visited_pad
+        tinyint reward
+        double reward_magnitude
+        enum transition_type
+        tinyint reward_condition
+        tinyint contingency_condition
+        tinyint state_condition
+        double response_time
+    }
+    event_types {
+        int event_type_id PK
+        varchar event_name
+        varchar trial_status_rules
+    }
+    events {
+        bigint event_id PK
+        int run_id FK
+        bigint trial_id FK
+        int event_type_id FK
+        smallint event_sequence
+        double onset_seconds
+        double duration_seconds
+        double source_timestamp
+        varchar source_field
+        int source_file_id FK
+        bigint trial_scope
+    }
+    participant_measures {
+        int participant_id PK,FK
+        varchar measure_name PK
+        varchar method_version PK
+        double value
+        int source_file_id FK
+    }
+    model_specifications {
+        int model_id PK
+        varchar model_name
+        varchar version
+        varchar code_reference
+    }
+    fitting_jobs {
+        int job_id PK
+        int model_id FK
+        varchar fitting_method
+        json prior_spec
+        varchar code_version
+        varchar run_status
+    }
+    participant_fits {
+        int fit_id PK
+        int job_id FK
+        int participant_id FK
+        double objective_value
+        varchar objective_kind
+        varchar fit_status
+        int source_file_id FK
+    }
+    parameter_definitions {
+        int model_id PK,FK
+        varchar parameter_name PK
+        varchar transform
+        double lower_bound
+        double upper_bound
+        varchar applicability
+    }
+    parameter_estimates {
+        int fit_id PK,FK
+        varchar parameter_name PK
+        double raw_value
+        double applied_value
+    }
+    variable_definitions {
+        int variable_id PK
+        int model_id FK
+        varchar variable_name
+        varchar stage
+        int locking_event_type_id FK
+        varchar units
+    }
+    latent_values {
+        int fit_id PK,FK
+        bigint trial_id PK,FK
+        int variable_id PK,FK
+        double value
+    }
+
+    studies ||--o{ participants : contains
+    participants ||--o{ sessions : attends
+    sessions ||--o{ runs : contains
+    runs ||--o{ trials : contains
+    runs ||--o{ events : contains
+    trials o|--o{ events : optionally_links
+    trials ||--o| two_step_trial_details : extends
+    participants ||--o{ participant_measures : describes
+    model_specifications ||--o{ fitting_jobs : versions
+    model_specifications ||--o{ parameter_definitions : defines
+    model_specifications ||--o{ variable_definitions : defines
+    fitting_jobs ||--o{ participant_fits : produces
+    participants ||--o{ participant_fits : fitted
+    participant_fits ||--o{ parameter_estimates : estimates
+    participant_fits ||--o{ latent_values : produces
+    trials ||--o{ latent_values : aligns
+    variable_definitions ||--o{ latent_values : labels
+    event_types ||--o{ events : classifies
+    event_types o|--o{ variable_definitions : locks
+    source_files ||--o{ ingestion_records : audits
+    ingestion_runs ||--o{ ingestion_records : records
+    source_files ||--o{ participants : supplies
+    source_files ||--o{ runs : supplies
+    source_files ||--o{ trials : supplies
+    source_files ||--o{ events : supplies
+    source_files ||--o{ participant_measures : supplies
+    source_files ||--o{ participant_fits : supplies
