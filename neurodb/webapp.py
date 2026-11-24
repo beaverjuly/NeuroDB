@@ -6,10 +6,12 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 import os
 import pymysql
+from threading import Lock
 from urllib.parse import urlsplit
 
 from . import ROOT
 from .custom_sql import run_custom_sql
+from .live_experiments import run_live_experiment
 from .queries import QUERIES
 from .server import connect, ensure_reader, start
 
@@ -18,6 +20,7 @@ PORT = 8765
 PAGE = ROOT / 'web/index.html'
 DIAGRAMS = ROOT / 'web/diagrams'
 DIAGRAM_SOURCE = ROOT / 'docs/NeuroDB_Query_Logic_Diagrams.pdf'
+LIVE_EXPERIMENT_LOCK = Lock()
 
 
 def fetch(sql, params=()):
@@ -148,17 +151,24 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         route = urlsplit(self.path).path
-        if route not in ('/api/query', '/api/custom-query'):
+        if route not in ('/api/query', '/api/custom-query', '/api/live-experiment'):
             return self.send({'error': 'Page not found'}, status=404)
-        length = int(self.headers.get('Content-Length', '0'))
-        if not 0 < length <= (16384 if route == '/api/custom-query' else 4096):
-            return self.send({'error': 'Invalid request size'}, status=400)
         try:
+            length = int(self.headers.get('Content-Length', '0'))
+            if not 0 < length <= (16384 if route == '/api/custom-query' else 4096):
+                return self.send({'error': 'Invalid request size'}, status=400)
             body = json.loads(self.rfile.read(length))
             if not isinstance(body, dict):
                 raise ValueError('Expected a query object')
             if route == '/api/custom-query':
                 return self.send(run_custom_sql(body.get('sql')))
+            if route == '/api/live-experiment':
+                if not LIVE_EXPERIMENT_LOCK.acquire(blocking=False):
+                    return self.send({'error': 'Another live experiment is running'}, status=409)
+                try:
+                    return self.send(run_live_experiment(body))
+                finally:
+                    LIVE_EXPERIMENT_LOCK.release()
             return self.send(run_query(body))
         except (ValueError, TypeError, pymysql.err.MySQLError) as exc:
             return self.send({'error': str(exc)}, status=400)

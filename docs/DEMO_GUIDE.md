@@ -11,7 +11,7 @@ The sequence below follows the six minute presentation script and leaves time fo
 * Open the separate explorer with its default participant, run and 0–60 second window.
 * Open `results/NeuroDB_Demo.html` as a backup tab.
 * Rehearse the window switch. Run only Q1 and Q3 live during the presentation.
-* Keep `notebooks/SQL_Playground.ipynb` open in another JupyterLab tab for an unexpected question. The explorer's Custom SQL section offers the same read only path.
+* Keep `notebooks/SQL_Playground.ipynb` open in another JupyterLab tab for an unexpected question. The explorer's SQL Workspace offers the same read only path.
 
 ## Demonstration sequence
 
@@ -27,7 +27,7 @@ The sequence below follows the six minute presentation script and leaves time fo
 
 Use Q2, Q5 and Q6 if time permits or when asked. Explain the scientific question before displaying SQL.
 
-If asked for a new query, open Custom SQL in the explorer or the SQL Playground tab. Start with `trial_context` for behavioral questions. The editor accepts SELECT, WITH, EXPLAIN SELECT, SHOW and DESCRIBE, shows at most 200 rows, and stops a query after five seconds. Use its prepared examples for run counts, missed responses, response time, event types, model coverage and schema inspection.
+If asked for a new query, open SQL Workspace in the explorer or the SQL Playground tab. Start with `trial_context` for behavioral questions. The editor accepts SELECT, WITH, EXPLAIN SELECT, SHOW and DESCRIBE, shows at most 200 rows, and stops a query after five seconds. Use its prepared examples for run counts, missed responses, response time, event types, model coverage and schema inspection. Use Live Experiments only if asked to rerun an index, selectivity, or materialization comparison; the six minute sequence uses the recorded Benchmark Results.
 
 ## Suggested opening
 

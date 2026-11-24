@@ -1,50 +1,13 @@
 """Controlled real-data experiments in disposable session-local tables."""
 from datetime import datetime, timezone
-import hashlib
 import json
-import random
-import statistics
 import time
 import uuid
 import pandas as pd
 from . import ROOT
+from .measurement import compare
 from .server import connect
 from .queries import defaults
-
-def counters(c):
-    c.execute("SHOW SESSION STATUS LIKE 'Handler_read%'")
-    return {r['Variable_name']:int(r['Value']) for r in c.fetchall()}
-
-def run_once(c,sql,params):
-    before=counters(c);start=time.perf_counter_ns()
-    c.execute(sql,params);rows=c.fetchall()
-    elapsed=(time.perf_counter_ns()-start)/1e6
-    after=counters(c)
-    delta={k:after[k]-v for k,v in before.items()}
-    checksum=hashlib.sha256(json.dumps(rows,sort_keys=True,default=str).encode()).hexdigest()
-    return {'milliseconds':elapsed,'handler_reads':sum(delta.values()),'handler_counters':delta,
-            'returned_rows':len(rows),'result_sha256':checksum}
-
-def compare(c,cases,params,repeats=9):
-    details={}
-    for label,sql in cases.items():
-        for _ in range(2):c.execute(sql,params);c.fetchall()
-        c.execute('EXPLAIN ANALYZE '+sql,params)
-        plan='\n'.join(next(iter(row.values())) for row in c.fetchall())
-        c.execute('EXPLAIN FORMAT=JSON '+sql,params)
-        estimated=json.loads(next(iter(c.fetchone().values())))
-        details[label]={'sql':sql,'params':params,'explain_analyze':plan,'estimated_plan':estimated,'samples':[]}
-    rng=random.Random(551)
-    for _ in range(repeats):
-        order=list(cases);rng.shuffle(order)
-        for label in order:details[label]['samples'].append(run_once(c,cases[label],params))
-    hashes={s['result_sha256'] for d in details.values() for s in d['samples']}
-    if len(hashes)!=1:raise AssertionError('Compared access paths returned different results')
-    for d in details.values():
-        d['median_ms']=statistics.median(x['milliseconds'] for x in d['samples'])
-        d['median_handler_reads']=statistics.median(x['handler_reads'] for x in d['samples'])
-        d['returned_rows']=d['samples'][0]['returned_rows']
-    return details
 
 def run_experiments(save=True,repeats=9):
     params=defaults();rid=params['run_id']

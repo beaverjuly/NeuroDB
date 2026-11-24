@@ -1,6 +1,6 @@
 # NeuroDB grading package
 
-Open `results/NeuroDB_Demo.html` to review the executed database queries, three ERD panels, plans, figures, and validation results. The Jupyter notebook in `notebooks/NeuroDB_Demo.ipynb` provides the full teaching walkthrough. The complete 19-table keyed ERD with every attribute is `docs/schema.mmd`. `Launch NeuroDB Explorer.command` opens the live browser interface. Each predefined query shows relevant filters, results, SQL, bound values and its matching diagram. Its Custom SQL section and `notebooks/SQL_Playground.ipynb` provide a bounded read only route for new questions.
+Open `results/NeuroDB_Demo.html` to review the executed database queries, three ERD panels, plans, figures, and validation results. The Jupyter notebook in `notebooks/NeuroDB_Demo.ipynb` provides the full teaching walkthrough. The complete 19-table keyed ERD with every attribute is `docs/schema.mmd`. `Launch NeuroDB Explorer.command` opens the live browser interface. Each predefined query shows relevant filters, results, SQL, bound values and its matching diagram. SQL Workspace and `notebooks/SQL_Playground.ipynb` provide a bounded read only route for new questions. Live Experiments runs temporary-table index, selectivity, and materialization comparisons; Benchmark Results retains the separately recorded measurements.
 
 The ZIP includes a MySQL 8.4.11 dump, 378 checksummed public OSF source files, validated timing exports, code, results, and documentation. It excludes local virtual environments and MySQL server files.
 
